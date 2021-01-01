@@ -1,0 +1,33 @@
+.header {
+  height: 80px;
+  background-color: #b8d2b3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-weight: bolder;
+  font-size: large;
+
+  .logo {
+    width: 65px;
+    height: 65px;
+    padding: 10px;
+    align-items: center;
+  }
+
+  .title {
+    align-items: center;
+  }
+
+  .options-container {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    .option {
+      padding: 0 10px;
+    }
+  }
+}
