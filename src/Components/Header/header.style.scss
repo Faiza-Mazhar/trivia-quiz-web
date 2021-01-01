@@ -1,11 +1,12 @@
 .header {
   height: 80px;
-  background-color: grey;
+  background-color: #b8d2b3;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: large;
 
   .logo {
     width: 65px;
@@ -21,7 +22,6 @@
   .options-container {
     display: flex;
     flex-direction: row;
-    padding: 0 10px;
 
     align-items: center;
     justify-content: flex-end;
