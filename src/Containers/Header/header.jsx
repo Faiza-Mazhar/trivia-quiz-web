@@ -4,9 +4,9 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="header">
+    <header className="header">
       <HeaderComponent isUserSignedIn={true} userName={"Faiza"} />
-    </div>
+    </header>
   );
 };
 

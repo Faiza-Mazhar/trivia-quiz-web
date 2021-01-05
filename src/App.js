@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import Header from "./Containers/Header/header";
 import Homepage from "./pages/home/homepage";
@@ -10,13 +10,11 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Router>
-        <Switch>
-          <Route path="/signin" component={SignInAndSignUpPage} />
-          <Route path="/leaderboard" component={LeaderBoard} />
-          <Route path="/" exact component={Homepage} />
-        </Switch>
-      </Router>
+      <Switch>
+        <Route path="/signin" exact component={SignInAndSignUpPage} />
+        <Route path="/leaderboard" exact component={LeaderBoard} />
+        <Route path="/" exact component={Homepage} />
+      </Switch>
     </div>
   );
 }
