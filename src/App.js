@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Header from "./containers/header/header";
+import Header from "./Containers/Header/header";
 import Homepage from "./pages/home/homepage";
 import SignInAndSignUpPage from "./pages/signin-signup/signin-signup";
 import LeaderBoard from "./pages/leaderboard/leaderboard";
