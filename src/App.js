@@ -2,9 +2,9 @@ import "./App.css";
 import { Route, Switch } from "react-router-dom";
 
 import Header from "./Containers/Header/header";
-import Homepage from "./Pages/home/homepage";
-import SignInAndSignUpPage from "./Pages/signin-signup/signin-signup";
-import LeaderBoard from "./Pages/leaderboard/leaderboard";
+import Homepage from "./pages/home/homepage";
+import SignInAndSignUpPage from "./pages/signin-signup/signin-signup";
+import LeaderBoard from "./pages/leaderboard/leaderboard";
 import Sidebar from "./Containers/sidebar/sidebar";
 function App() {
   return (
