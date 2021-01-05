@@ -1,4 +1,4 @@
-import HeaderComponent from "../../Components/Header/header";
+import HeaderComponent from "../../components/header/header";
 
 import React from "react";
 
