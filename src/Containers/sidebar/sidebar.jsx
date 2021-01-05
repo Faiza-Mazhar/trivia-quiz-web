@@ -1,40 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useDropDown from "../../Components/Dropdown/use-dropdown";
 import "./sidebar.style.scss";
+import axios from "axios";
 
-import fetchCategories from "./fetcher";
+import { numQuestion, difficultyLevel, questionType } from "./helper";
+
 const Sidebar = () => {
-  const [category, CategoriesDropdown] = useDropDown("Select Category", "Any", [
-    "Any",
-    ...fetchCategories(),
-  ]);
-  const [
-    numQuestions,
-    NumQuestionDropdown,
-  ] = useDropDown("Select Number of Questions", "Any", [
-    "Any",
-    "5",
-    "10",
-    "15",
-  ]);
-  const [
-    difficultyLevel,
-    DifficultyLevelDropdown,
-  ] = useDropDown("Select Difficulty Level", "Any", [
-    "Any",
-    "Easy",
-    "Medium",
-    "Hard",
-  ]);
+  const [categories, setCategories] = useState([]);
 
-  const [
-    questionType,
-    QuestionTypeDropdown,
-  ] = useDropDown("Select Difficulty Level", "Any", [
+  useEffect(() => {
+    if (categories.length === 0) {
+      let categories_info;
+      let categoriesArray = [];
+      axios.get("https://opentdb.com/api_category.php").then((response) => {
+        categories_info = response.data.trivia_categories;
+        categories_info.forEach((category) => {
+          categoriesArray.push(category.name);
+        });
+
+        setCategories(categoriesArray);
+      });
+    }
+  }, [categories]);
+
+  const [selectedCategory, CategoriesDropdown] = useDropDown(
+    "Select Category",
     "Any",
-    "Multiple Choice",
-    "True/False",
-  ]);
+    ["Any", ...categories]
+  );
+
+  const [selectedNumQuestion, NumQuestionDropdown] = useDropDown(
+    "Select Number of Questions",
+    "Any",
+    numQuestion
+  );
+
+  const [selectedDifficultyLevel, DifficultyLevelDropdown] = useDropDown(
+    "Select Difficulty Level",
+    "Any",
+    difficultyLevel
+  );
+
+  const [selectedQuestionType, QuestionTypeDropdown] = useDropDown(
+    "Select Difficulty Level",
+    "Any",
+    questionType
+  );
 
   return (
     <div className="sidebar">
@@ -42,11 +53,6 @@ const Sidebar = () => {
       <NumQuestionDropdown />
       <DifficultyLevelDropdown />
       <QuestionTypeDropdown />
-
-      {console.log({ numQuestions })}
-      {console.log({ difficultyLevel })}
-      {console.log({ questionType })}
-      {console.log({ category })}
     </div>
   );
 };
