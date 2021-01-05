@@ -5,7 +5,7 @@ import Header from "./Containers/Header/header";
 import Homepage from "./Pages/home/homepage";
 import SignInAndSignUpPage from "./Pages/signin-signup/signin-signup";
 import LeaderBoard from "./Pages/leaderboard/leaderboard";
-import Sidebar from "./Containers/Sidebar/sidebar";
+import Sidebar from "./Containers/sidebar/sidebar";
 function App() {
   return (
     <div className="App">
