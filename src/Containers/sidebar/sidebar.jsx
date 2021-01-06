@@ -2,37 +2,32 @@ import React, { useState, useEffect } from "react";
 import useDropDown from "../../Components/Dropdown/use-dropdown";
 import CustomButton from "../../Components/CustomButton/custom-button";
 import "./sidebar.style.scss";
-import axios from "axios";
 
-import { numQuestion, difficultyLevel, questionType } from "./helper";
+import {
+  numQuestion,
+  difficultyLevel,
+  questionType,
+  fetchCategoryData,
+  getCategoryInfo,
+} from "./helper";
 
 const Sidebar = ({ setQuizQueryParams }) => {
   const [categories, setCategories] = useState([]);
   const [categoriesIds, setCategoriesIds] = useState([]);
 
   useEffect(() => {
-    if (categories.length === 0) {
-      let categories_info;
-      let categoriesArray = [];
-      let categoriesIdsArray = [];
-      axios.get("https://opentdb.com/api_category.php").then((response) => {
-        categories_info = response.data.trivia_categories;
+    fetchCategoryData().then((res) => {
+      const { categoriesInfo, categoriesIdsInfo } = getCategoryInfo(res);
 
-        categories_info.forEach((category) => {
-          categoriesArray.push(category.name);
-          categoriesIdsArray.push(category.id);
-        });
-
-        setCategories(categoriesArray);
-        setCategoriesIds(categoriesIdsArray);
-      });
-    }
-  }, [categories]);
+      setCategories(categoriesInfo);
+      setCategoriesIds(categoriesIdsInfo);
+    });
+  }, []);
 
   const [selectedCategory, CategoriesDropdown] = useDropDown(
     "Select Category",
     "Any",
-    categories
+    ["Any", ...categories]
   );
 
   const [selectedNumQuestion, NumQuestionDropdown] = useDropDown(
