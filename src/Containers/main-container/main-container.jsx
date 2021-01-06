@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../sidebar/sidebar";
+
 const MainContainer = () => {
+  const [quizQueryParams, setQuizQueryParams] = useState();
   return (
     <div className="main-container">
-      <Sidebar />
+      <Sidebar setQuizQueryParams={setQuizQueryParams} />
     </div>
   );
 };
