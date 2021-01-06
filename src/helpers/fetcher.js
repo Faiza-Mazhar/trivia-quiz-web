@@ -4,7 +4,9 @@ const fetchData = (url) => {
   return axios
     .get(url)
     .then((response) => response.data)
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      throw error;
+    });
 };
 
 export { fetchData };
