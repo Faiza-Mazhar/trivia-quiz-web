@@ -4,7 +4,6 @@ jest.mock("axios");
 
 describe("fetchData", () => {
   it("fetches successfully data from an API", async () => {
-    jest.resetAllMocks();
     const res = {
       data: {
         category: [
