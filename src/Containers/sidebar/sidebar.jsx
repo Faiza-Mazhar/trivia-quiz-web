@@ -32,7 +32,7 @@ const Sidebar = ({ setQuizQueryParams }) => {
   const [selectedCategory, CategoriesDropdown] = useDropDown(
     "Select Category",
     "Any",
-    ["Any", ...categories]
+    categories
   );
 
   const [selectedNumQuestion, NumQuestionDropdown] = useDropDown(
