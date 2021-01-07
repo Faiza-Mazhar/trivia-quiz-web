@@ -1,5 +1,5 @@
 import {
-  //fetchData,
+  fetchQuestions,
   generateQuizUrl,
 } from "../../../Containers/main-container/fetcher";
 
@@ -55,7 +55,7 @@ test("generateQuizUrl should append boolean question type if it is present", () 
   );
 });
 
-test("generateQuizUrl should append boolean question type if it is present", () => {
+test("generateQuizUrl should append - multiple - question type if it is present", () => {
   const quizQueryParams = {
     category: "Books",
     categoryId: 1,
@@ -68,4 +68,16 @@ test("generateQuizUrl should append boolean question type if it is present", () 
   );
 });
 
-test("fetchData should return the question JSON array", () => {});
+test("fetchQuestions should return the question JSON array", async () => {
+  const quizQueryParams = {
+    category: "Any",
+    categoryId: undefined,
+    difficultyLevel: "Any",
+    numQuestion: "5",
+    questionType: "Any",
+  };
+
+  await fetchQuestions(quizQueryParams).then((response) => {
+    expect(response.length).toBeGreaterThan(0);
+  });
+});
