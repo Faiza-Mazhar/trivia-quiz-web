@@ -1,12 +1,14 @@
 import React from "react";
 
 import Sidebar from "../../../Containers/sidebar/sidebar";
+import MainContainer from "../../../Containers/main-container/main-container";
+
 import {
   fetchCategoryData,
   getCategoryInfo,
 } from "../../../Containers/sidebar/helper";
 
-import { act, render, cleanup, waitFor } from "@testing-library/react";
+import { act, render, cleanup, fireEvent } from "@testing-library/react";
 
 afterEach(cleanup);
 jest.mock("../../../Containers/sidebar/helper");
@@ -24,7 +26,8 @@ const categories = {
   ],
 };
 
-test("Sidebar component should fetch categories information and populate the category dropdown on loading the page", async () => {
+//TO-DO
+test("on click play button in side bar, it should update the state in the parent container", async () => {
   await fetchCategoryData.mockResolvedValue(categories.trivia_categories);
 
   getCategoryInfo.mockImplementationOnce(() => ({
@@ -33,15 +36,12 @@ test("Sidebar component should fetch categories information and populate the cat
   }));
 
   await act(async () => {
-    const { getByText } = render(<Sidebar />);
-
-    await waitFor(() => getByText("General Knowledge"));
-
-    expect(await fetchCategoryData).toHaveBeenCalled();
-    expect(await fetchCategoryData).toHaveBeenCalledTimes(1);
-
-    expect(getByText(/Select Category/i).textContent).toBe(
-      "Select CategoryAny General Knowledge Entertainment: Books"
+    const { container, getByText } = render(
+      <MainContainer>
+        <Sidebar />
+      </MainContainer>
     );
+
+    fireEvent.click(getByText("PLAY"));
   });
 });
