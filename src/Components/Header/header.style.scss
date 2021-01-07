@@ -4,9 +4,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 99%;
   font-weight: bolder;
   font-size: large;
+  border-radius: 5px;
+  margin: 10px;
 
   .logo {
     width: 65px;
