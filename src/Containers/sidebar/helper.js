@@ -1,6 +1,6 @@
 import { fetchData } from "../../helpers/fetcher";
 
-const numQuestion = ["Any", "5", "10", "15"];
+const numQuestion = ["5", "10", "15"];
 const difficultyLevel = ["Any", "Easy", "Medium", "Hard"];
 const questionType = ["Any", "Multiple Choice", "True/False"];
 

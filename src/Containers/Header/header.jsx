@@ -5,7 +5,7 @@ import React from "react";
 const Header = () => {
   return (
     <header className="header">
-      <HeaderComponent isUserSignedIn={true} userName={"Faiza"} />
+      <HeaderComponent isUserSignedIn userName={""} />
     </header>
   );
 };
