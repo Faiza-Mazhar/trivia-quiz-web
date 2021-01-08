@@ -32,7 +32,7 @@ const Sidebar = ({ setQuizQueryParams }) => {
 
   const [selectedNumQuestion, NumQuestionDropdown] = useDropDown(
     "Select Number of Questions",
-    "Any",
+    "5",
     numQuestion
   );
 
@@ -43,7 +43,7 @@ const Sidebar = ({ setQuizQueryParams }) => {
   );
 
   const [selectedQuestionType, QuestionTypeDropdown] = useDropDown(
-    "Select Difficulty Level",
+    "Select Questions Type",
     "Any",
     questionType
   );

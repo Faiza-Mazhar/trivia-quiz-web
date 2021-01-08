@@ -1,8 +1,8 @@
 import React from "react";
-import "./homepage.style.scss";
 
+import MainContainer from "../../Containers/main-container/main-container";
 const Homepage = () => {
-  return <div className="homepage">{"Homepage"}</div>;
+  return <MainContainer />;
 };
 
 export default Homepage;

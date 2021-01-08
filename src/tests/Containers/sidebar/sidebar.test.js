@@ -9,6 +9,7 @@ import {
 import { act, render, cleanup, waitFor } from "@testing-library/react";
 
 afterEach(cleanup);
+
 jest.mock("../../../Containers/sidebar/helper");
 
 const categories = {
@@ -28,20 +29,20 @@ test("Sidebar component should fetch categories information and populate the cat
   await fetchCategoryData.mockResolvedValue(categories.trivia_categories);
 
   getCategoryInfo.mockImplementationOnce(() => ({
-    categoriesInfo: [" General Knowledge ", "Entertainment: Books"],
+    categoriesInfo: [" C1 ", "C2"],
     categoriesIdsInfo: [9, 10],
   }));
 
   await act(async () => {
     const { getByText } = render(<Sidebar />);
 
-    await waitFor(() => getByText("General Knowledge"));
+    await waitFor(() => getByText("C1"));
 
     expect(await fetchCategoryData).toHaveBeenCalled();
     expect(await fetchCategoryData).toHaveBeenCalledTimes(1);
 
     expect(getByText(/Select Category/i).textContent).toBe(
-      "Select CategoryAny General Knowledge Entertainment: Books"
+      "Select CategoryAny C1 C2"
     );
   });
 });
