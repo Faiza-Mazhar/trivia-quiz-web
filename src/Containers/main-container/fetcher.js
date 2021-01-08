@@ -18,7 +18,7 @@ const generateQuizUrl = ({
 
   quizURL = numQuestion && `${quizURL}amount=${numQuestion}`;
 
-  if (categoryId && category !== "Any") {
+  if (categoryId && category && category !== "Any") {
     quizURL = `${quizURL}&category=${categoryId}`;
   }
 

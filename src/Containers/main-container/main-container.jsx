@@ -5,13 +5,21 @@ import { fetchQuestions } from "./fetcher";
 import "./main-container.style.scss";
 
 const MainContainer = () => {
-  const [quizQueryParams, setQuizQueryParams] = useState();
+  const defaultState = {
+    category: "Any",
+    categoryId: undefined,
+    numQuestion: 5,
+    difficultyLevel: "Any",
+    questionType: "multiple",
+  };
+  const [quizQueryParams, setQuizQueryParams] = useState(defaultState);
   const [quizQuestions, setQuizQuestions] = useState();
 
   useEffect(() => {
-    fetchQuestions(quizQueryParams).then((questions) => {
-      setQuizQuestions(questions);
-    });
+    quizQueryParams &&
+      fetchQuestions(quizQueryParams).then((questions) => {
+        setQuizQuestions(questions);
+      });
   }, [quizQueryParams]);
 
   return (
