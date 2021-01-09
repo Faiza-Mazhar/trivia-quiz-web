@@ -1,14 +1,15 @@
 .quiz-container {
   background-color: #abb899;
-
   border-radius: 5px;
+  height: 100%;
 
   .question-header {
+    padding: 10px;
   }
 
   .question {
+    margin: 40px 30px;
     align-items: center;
-
     text-align: center;
     font-weight: bolder;
     font-size: xx-large;
