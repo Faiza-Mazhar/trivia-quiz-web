@@ -64,9 +64,11 @@ const Sidebar = ({ setQuizQueryParams }) => {
       <NumQuestionDropdown />
       <DifficultyLevelDropdown />
       <QuestionTypeDropdown />
-      <CustomButton onClick={onPlayButtonClick} type="button">
-        PLAY
-      </CustomButton>
+      <div className="custom-button-container">
+        <CustomButton onClick={onPlayButtonClick} type="button">
+          PLAY
+        </CustomButton>
+      </div>
     </div>
   );
 };
