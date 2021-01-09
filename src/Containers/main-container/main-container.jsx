@@ -25,10 +25,13 @@ const MainContainer = () => {
   console.log({ quizQuestions });
   return (
     <div className="main-container">
-      <Sidebar setQuizQueryParams={setQuizQueryParams} className="sidebar" />
-      {quizQuestions && (
-        <QuizDisplay quizQuestions={quizQuestions} className="quiz-display" />
-      )}
+      <div className="sidebar-container">
+        <Sidebar setQuizQueryParams={setQuizQueryParams} />
+      </div>
+
+      <div className="quiz-display-container">
+        {quizQuestions && <QuizDisplay quizQuestions={quizQuestions} />}
+      </div>
     </div>
   );
 };
