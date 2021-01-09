@@ -1,19 +1,29 @@
 .main-container {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
+  flex-wrap: wrap;
 
-  .sidebar {
-    margin: 100px 10px;
-    min-width: 300px;
-    min-height: 500px;
-    align-items: flex-start;
-    height: 50vh;
-    width: 20vw;
-    z-index: 1;
-    padding: 20px;
-    overflow: auto;
-    border-radius: 5px;
+  .sidebar-container {
+    flex: 25%;
+    background-color: aqua;
+    // min-width: 300px;
+    // min-height: 500px;
+    // align-items: flex-start;
+    // height: 50vh;
+    // width: 20vw;
+    // z-index: 1;
+    // padding: 20px;
+    // overflow: auto;border-radius: 5px;
+  }
+
+  .quiz-display-container {
+    flex: 75%;
+    background-color: azure;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .sidebar-container,
+    .sidebar-container {
+      flex: 100%;
+    }
   }
 }

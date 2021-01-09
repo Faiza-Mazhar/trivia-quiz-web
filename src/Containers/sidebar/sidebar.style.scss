@@ -1,11 +1,10 @@
 .sidebar {
   background-color: #abb899;
   align-items: center;
-  display: flex;
-  flex-wrap: wrap;
+  height: 100%;
 
   .custom-button-container {
     width: 80%;
-    margin: 10px 0px 30px 30px;
+    // margin: 10px 0px 30px 30px;
   }
 }
