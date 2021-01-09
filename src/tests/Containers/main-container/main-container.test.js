@@ -51,24 +51,27 @@ const questions = {
   ],
 };
 
-test.only("on click play button in side bar, it should update the state in the parent container", async () => {
-  await fetchCategoryData.mockResolvedValue(categories.trivia_categories);
+test.todo(
+  "on click play button in side bar, it should update the state in the parent container"
+  // , async () => {
+  // await fetchCategoryData.mockResolvedValue(categories.trivia_categories);
 
-  getCategoryInfo.mockImplementationOnce(() => ({
-    categoriesInfo: [" C1 ", "C2"],
-    categoriesIdsInfo: [9, 10],
-  }));
+  // getCategoryInfo.mockImplementationOnce(() => ({
+  //   categoriesInfo: [" C1 ", "C2"],
+  //   categoriesIdsInfo: [9, 10],
+  // }));
 
-  await fetchQuestions.mockResolvedValue(questions);
+  // await fetchQuestions.mockResolvedValue(questions);
 
-  await act(async () => {
-    const { container, getByText, rerender } = render(
-      <MainContainer>
-        <Sidebar />
-        <QuizDisplay quizQuestions={""} />
-      </MainContainer>
-    );
+  // await act(async () => {
+  //   const { container, getByText, rerender } = render(
+  //     <MainContainer>
+  //       <Sidebar />
+  //       <QuizDisplay quizQuestions={""} />
+  //     </MainContainer>
+  //   );
 
-    fireEvent.click(getByText("PLAY"));
-  });
-});
+  //   fireEvent.click(getByText("PLAY"));
+  // });
+  // }
+);

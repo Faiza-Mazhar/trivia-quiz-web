@@ -1,8 +1,17 @@
 .quiz-container {
-  margin: 10px 10px;
   background-color: #abb899;
-  width: 80vw;
-  height: 80vh;
   border-radius: 5px;
-  padding: 10px;
+  height: 100%;
+
+  .question-header {
+    padding: 10px;
+  }
+
+  .question {
+    margin: 40px 30px;
+    align-items: center;
+    text-align: center;
+    font-weight: bolder;
+    font-size: xx-large;
+  }
 }

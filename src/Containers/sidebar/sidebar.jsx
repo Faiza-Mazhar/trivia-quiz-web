@@ -25,25 +25,25 @@ const Sidebar = ({ setQuizQueryParams }) => {
   }, []);
 
   const [selectedCategory, CategoriesDropdown] = useDropDown(
-    "Select Category",
+    "Category",
     "Any",
     ["Any", ...categories]
   );
 
   const [selectedNumQuestion, NumQuestionDropdown] = useDropDown(
-    "Select Number of Questions",
+    "Number of Questions",
     "5",
     numQuestion
   );
 
   const [selectedDifficultyLevel, DifficultyLevelDropdown] = useDropDown(
-    "Select Difficulty Level",
+    "Difficulty Level",
     "Any",
     difficultyLevel
   );
 
   const [selectedQuestionType, QuestionTypeDropdown] = useDropDown(
-    "Select Questions Type",
+    "Questions Type",
     "Any",
     questionType
   );
@@ -64,9 +64,11 @@ const Sidebar = ({ setQuizQueryParams }) => {
       <NumQuestionDropdown />
       <DifficultyLevelDropdown />
       <QuestionTypeDropdown />
-      <CustomButton onClick={onPlayButtonClick} type="button">
-        PLAY
-      </CustomButton>
+      <div className="custom-button-container">
+        <CustomButton onClick={onPlayButtonClick} type="button">
+          PLAY
+        </CustomButton>
+      </div>
     </div>
   );
 };
