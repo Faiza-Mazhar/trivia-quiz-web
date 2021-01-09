@@ -26,12 +26,10 @@ const MainContainer = () => {
   return (
     <div className="main-container">
       <div className="sidebar-container">
-        {/* <div>Sidebar</div> */}
         <Sidebar setQuizQueryParams={setQuizQueryParams} />
       </div>
 
       <div className="quiz-display-container">
-        {/* <div>Question</div> */}
         {quizQuestions && <QuizDisplay quizQuestions={quizQuestions} />}
       </div>
     </div>
