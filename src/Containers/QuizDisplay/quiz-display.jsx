@@ -75,8 +75,6 @@ const QuizDisplay = ({ quizQuestions }) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setReplyString(undefined);
       setAnswers(undefined);
-    } else {
-      setCurrentQuestionIndex(0);
     }
   };
 
