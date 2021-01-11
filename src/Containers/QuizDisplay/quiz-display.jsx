@@ -36,6 +36,13 @@ const QuizDisplay = ({ quizQuestions }) => {
     incorrect_answers,
   } = questions[currentQuestionIndex];
 
+  useEffect(() => {
+    !answers &&
+      setAnswers([...shuffleAnswers(correct_answer, incorrect_answers)]);
+
+    setReplyString(undefined);
+  }, [answers, correct_answer, incorrect_answers]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -64,13 +71,6 @@ const QuizDisplay = ({ quizQuestions }) => {
       setAnswers(undefined);
     }
   };
-
-  useEffect(() => {
-    !answers &&
-      setAnswers([...shuffleAnswers(correct_answer, incorrect_answers)]);
-
-    setReplyString("");
-  }, [answers, correct_answer, incorrect_answers]);
 
   return (
     <div className="quiz-container">
