@@ -4,10 +4,13 @@
   letter-spacing: 0.5px;
   line-height: 50px;
   background-color: #556342;
-  height: 50px;
+  height: auto;
   font-weight: bolder;
   border: none;
-  font-family: "Open Sans Condensed", sans-serif;
+  font-family: inherit;
+  text-align: center;
+
+  font-size: large;
   cursor: pointer;
   border-radius: 5px;
 
@@ -31,6 +34,9 @@
   &.answer {
     background-color: #e2eee2;
     color: #2a3121;
+    font-weight: bold;
+    font-size: x-large;
+    padding: 10px 10px;
 
     &:focus {
       background-color: #2a3121;

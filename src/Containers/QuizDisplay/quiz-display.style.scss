@@ -30,4 +30,22 @@
   .submit-button {
     padding: 10px 35%;
   }
+
+  .label {
+    width: auto;
+    height: auto;
+    color: white;
+
+    letter-spacing: 0.5px;
+    font-family: inherit;
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+
+    background-color: #556342;
+
+    border: 1px solid #e2eee2;
+    padding: 10px;
+    border-radius: 5px;
+  }
 }
