@@ -71,11 +71,12 @@ const QuizDisplay = ({ quizQuestions }) => {
   };
 
   const handleNextQuestion = () => {
-    if (!isLastQuestion && currentQuestionIndex < questions.length) {
-      const index = currentQuestionIndex + 1;
-      setCurrentQuestionIndex(index);
+    if (currentQuestionIndex < questions.length) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
       setReplyString(undefined);
       setAnswers(undefined);
+    } else {
+      setCurrentQuestionIndex(0);
     }
   };
 
