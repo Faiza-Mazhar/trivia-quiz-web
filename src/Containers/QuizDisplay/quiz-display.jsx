@@ -64,7 +64,7 @@ const QuizDisplay = ({ quizQuestions }) => {
   };
 
   const nextQuestion = () => {
-    if (currentQuestionIndex < quizQuestions.length) {
+    if (currentQuestionIndex < questions.length) {
       const index = currentQuestionIndex + 1;
       setCurrentQuestionIndex(index);
       setReplyString(undefined);
@@ -87,11 +87,15 @@ const QuizDisplay = ({ quizQuestions }) => {
         answers={answers}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
+        showSubmitButton={replyString === undefined}
       />
 
-      {replyString && <label>{replyString}</label>}
+      {replyString && <label className="label">{replyString}</label>}
+
       <div className="submit-button">
-        <CustomButton onClick={nextQuestion}>NEXT</CustomButton>
+        {replyString && replyString.length && (
+          <CustomButton onClick={nextQuestion}>NEXT</CustomButton>
+        )}
       </div>
     </div>
   );

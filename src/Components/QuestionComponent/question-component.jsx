@@ -8,6 +8,7 @@ const QuestionFormComponent = ({
   answers,
   handleSubmit,
   handleChange,
+  showSubmitButton,
 }) => {
   return (
     <div>
@@ -33,7 +34,9 @@ const QuestionFormComponent = ({
         </div>
 
         <div className="submit-button">
-          <CustomButton type="submit">SUBMIT</CustomButton>
+          {showSubmitButton && (
+            <CustomButton type="submit">SUBMIT</CustomButton>
+          )}
         </div>
       </form>
     </div>
