@@ -14,6 +14,7 @@ const QuizDisplay = ({ quizQuestions }) => {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [answers, setAnswers] = useState();
   const [replyString, setReplyString] = useState(undefined);
+  const [questions] = useState(quizQuestions);
 
   let {
     category,
@@ -21,7 +22,7 @@ const QuizDisplay = ({ quizQuestions }) => {
     question,
     correct_answer,
     incorrect_answers,
-  } = quizQuestions[currentQuestionIndex];
+  } = questions[currentQuestionIndex];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,15 +47,9 @@ const QuizDisplay = ({ quizQuestions }) => {
   const nextQuestion = () => {
     if (currentQuestionIndex < quizQuestions.length) {
       const index = currentQuestionIndex + 1;
-      console.log("Before index", currentQuestionIndex);
       setCurrentQuestionIndex(index);
-      console.log("after index", currentQuestionIndex + 1);
       setReplyString("");
       setAnswers();
-      console.log({ question });
-      console.log({ correct_answer });
-      console.log({ incorrect_answers });
-      console.log({ currentQuestionIndex: currentQuestionIndex });
     }
   };
   useEffect(() => {
