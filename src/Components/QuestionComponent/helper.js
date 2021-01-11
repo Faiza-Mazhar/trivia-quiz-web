@@ -1,4 +1,7 @@
 const shuffleAnswers = (correctAnswer, wrongAnswers) => {
+  if (wrongAnswers.length > 1) {
+    return ["True", "False"];
+  }
   const answers = [correctAnswer, ...wrongAnswers];
   for (let i = answers.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));

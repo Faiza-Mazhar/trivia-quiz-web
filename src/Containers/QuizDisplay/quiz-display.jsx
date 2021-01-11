@@ -3,22 +3,25 @@ import "./quiz-display.style.scss";
 
 import QuestionHeader from "../../Components/QuestionHeader/question-header";
 import CustomButton from "../../Components/CustomButton/custom-button";
-import { shuffleAnswers, decodeHtmlEntities, getReply } from "./helper";
+import QuestionFormComponent from "../../Components/QuestionComponent/question-component";
+import {
+  shuffleAnswers,
+  getReply,
+} from "../../Components/QuestionComponent/helper";
 
 const QuizDisplay = ({ quizQuestions }) => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [answers, setAnswers] = useState();
-
   const [replyString, setReplyString] = useState(undefined);
 
-  const {
+  let {
     category,
     difficulty,
     question,
     correct_answer,
     incorrect_answers,
-  } = quizQuestions[currentQuestion];
+  } = quizQuestions[currentQuestionIndex];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,13 +44,24 @@ const QuizDisplay = ({ quizQuestions }) => {
   };
 
   const nextQuestion = () => {
-    if (currentQuestion < quizQuestions.length) {
-      setCurrentQuestion(currentQuestion + 1);
+    if (currentQuestionIndex < quizQuestions.length) {
+      const index = currentQuestionIndex + 1;
+      console.log("Before index", currentQuestionIndex);
+      setCurrentQuestionIndex(index);
+      console.log("after index", currentQuestionIndex + 1);
       setReplyString("");
+      setAnswers();
+      console.log({ question });
+      console.log({ correct_answer });
+      console.log({ incorrect_answers });
+      console.log({ currentQuestionIndex: currentQuestionIndex });
     }
   };
   useEffect(() => {
-    !answers && setAnswers(shuffleAnswers(correct_answer, incorrect_answers));
+    !answers &&
+      setAnswers([...shuffleAnswers(correct_answer, incorrect_answers)]);
+
+    setReplyString("");
   }, [answers, correct_answer, incorrect_answers]);
 
   return (
@@ -55,42 +69,22 @@ const QuizDisplay = ({ quizQuestions }) => {
       <QuestionHeader
         className="question-header"
         category={category}
-        questionNumber={currentQuestion}
+        questionNumber={currentQuestionIndex}
         totalQuestions={quizQuestions.length}
         difficulty={difficulty}
       />
 
-      <div className="question">{decodeHtmlEntities(question)}</div>
-
-      <form onSubmit={handleSubmit}>
-        <div className="answers-container">
-          {answers &&
-            answers.map((answer) => {
-              const decodedAnswer = decodeHtmlEntities(answer);
-              return (
-                <div key={decodedAnswer} className="answer-container">
-                  <CustomButton
-                    isAnswerButton={true}
-                    value={decodedAnswer}
-                    id={decodedAnswer}
-                    onClick={handleChange}
-                  >
-                    {decodedAnswer}
-                  </CustomButton>
-                </div>
-              );
-            })}
-        </div>
-
-        <div className="submit-button">
-          {!replyString && <CustomButton type="submit">SUBMIT</CustomButton>}
-          {replyString && (
-            <CustomButton onClick={nextQuestion}>Next</CustomButton>
-          )}
-        </div>
-      </form>
+      <QuestionFormComponent
+        question={question}
+        answers={answers}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+      />
 
       {replyString && <label>{replyString}</label>}
+      <div className="submit-button">
+        <CustomButton onClick={nextQuestion}>Next</CustomButton>
+      </div>
     </div>
   );
 };
