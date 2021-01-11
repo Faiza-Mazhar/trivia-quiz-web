@@ -1,5 +1,7 @@
 import React from "react";
 import CustomButton from "../../Components/CustomButton/custom-button";
+import RadioButton from "../../Components/RadioButton/radio-button";
+import useRadioButtons from "../RadioButton/use-radio-button";
 import { decodeHtmlEntities } from "./helper";
 
 import "./question-component.style.scss";
@@ -10,6 +12,8 @@ const QuestionFormComponent = ({
   handleChange,
   showSubmitButton,
 }) => {
+  const [ans, answerInputProps] = useRadioButtons("answers", handleChange);
+
   return (
     <div>
       <div className="question">{decodeHtmlEntities(question)}</div>
@@ -20,14 +24,12 @@ const QuestionFormComponent = ({
               const decodedAnswer = decodeHtmlEntities(answer);
               return (
                 <div key={decodedAnswer} className="answer-container">
-                  <CustomButton
-                    isAnswerButton={true}
+                  <RadioButton
                     value={decodedAnswer}
-                    id={decodedAnswer}
-                    onClick={handleChange}
-                  >
-                    {decodedAnswer}
-                  </CustomButton>
+                    key={decodedAnswer}
+                    inputProps={answerInputProps}
+                    answer={ans}
+                  />
                 </div>
               );
             })}
