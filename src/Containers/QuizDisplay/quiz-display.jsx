@@ -15,18 +15,26 @@ const QuizDisplay = ({ quizQuestions }) => {
   const [answers, setAnswers] = useState(undefined);
   const [replyString, setReplyString] = useState(undefined);
   const [questions, setQuizQuestions] = useState(quizQuestions);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [score, setScore] = useState(0);
 
   const resetState = () => {
     setCurrentQuestionIndex(0);
     setSelectedAnswer(undefined);
     setAnswers(undefined);
     setReplyString(undefined);
+    setIsLastQuestion(false);
+    setScore(0);
   };
 
   useEffect(() => {
     resetState();
     setQuizQuestions(quizQuestions);
   }, [quizQuestions]);
+
+  useEffect(() => {
+    setIsLastQuestion(currentQuestionIndex === questions.length - 1);
+  }, [currentQuestionIndex, questions.length]);
 
   let {
     category,
@@ -39,7 +47,6 @@ const QuizDisplay = ({ quizQuestions }) => {
   useEffect(() => {
     !answers &&
       setAnswers([...shuffleAnswers(correct_answer, incorrect_answers)]);
-
     setReplyString(undefined);
   }, [answers, correct_answer, incorrect_answers]);
 
@@ -55,6 +62,7 @@ const QuizDisplay = ({ quizQuestions }) => {
       setReplyString(getReply(correct_answer));
     } else {
       setReplyString(getReply());
+      setScore(score + 1);
     }
   };
 
@@ -63,8 +71,8 @@ const QuizDisplay = ({ quizQuestions }) => {
     setSelectedAnswer(event.target.value);
   };
 
-  const nextQuestion = () => {
-    if (currentQuestionIndex < questions.length) {
+  const handleNextQuestion = () => {
+    if (!isLastQuestion && currentQuestionIndex < questions.length) {
       const index = currentQuestionIndex + 1;
       setCurrentQuestionIndex(index);
       setReplyString(undefined);
@@ -82,19 +90,25 @@ const QuizDisplay = ({ quizQuestions }) => {
         difficulty={difficulty}
       />
 
-      <QuestionFormComponent
-        question={question}
-        answers={answers}
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        showSubmitButton={replyString === undefined}
-      />
+      {!isLastQuestion && (
+        <QuestionFormComponent
+          question={question}
+          answers={answers}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          showSubmitButton={replyString === undefined}
+        />
+      )}
+
+      {isLastQuestion && (
+        <label className="label">{`You answered ${score} questions correctly out of ${questions.length}`}</label>
+      )}
 
       {replyString && <label className="label">{replyString}</label>}
 
       <div className="submit-button">
         {replyString && replyString.length && (
-          <CustomButton onClick={nextQuestion}>NEXT</CustomButton>
+          <CustomButton onClick={handleNextQuestion}>NEXT</CustomButton>
         )}
       </div>
     </div>
