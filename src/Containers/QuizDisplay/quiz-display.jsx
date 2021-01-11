@@ -11,10 +11,22 @@ import {
 
 const QuizDisplay = ({ quizQuestions }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [answers, setAnswers] = useState();
+  const [selectedAnswer, setSelectedAnswer] = useState(undefined);
+  const [answers, setAnswers] = useState(undefined);
   const [replyString, setReplyString] = useState(undefined);
-  const [questions] = useState(quizQuestions);
+  const [questions, setQuizQuestions] = useState(quizQuestions);
+
+  const resetState = () => {
+    setCurrentQuestionIndex(0);
+    setSelectedAnswer(undefined);
+    setAnswers(undefined);
+    setReplyString(undefined);
+  };
+
+  useEffect(() => {
+    resetState();
+    setQuizQuestions(quizQuestions);
+  }, [quizQuestions]);
 
   let {
     category,
@@ -48,10 +60,11 @@ const QuizDisplay = ({ quizQuestions }) => {
     if (currentQuestionIndex < quizQuestions.length) {
       const index = currentQuestionIndex + 1;
       setCurrentQuestionIndex(index);
-      setReplyString("");
-      setAnswers();
+      setReplyString(undefined);
+      setAnswers(undefined);
     }
   };
+
   useEffect(() => {
     !answers &&
       setAnswers([...shuffleAnswers(correct_answer, incorrect_answers)]);
