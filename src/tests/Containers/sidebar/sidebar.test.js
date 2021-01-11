@@ -12,21 +12,9 @@ afterEach(cleanup);
 
 jest.mock("../../../Containers/sidebar/helper");
 
-const categories = {
-  trivia_categories: [
-    {
-      id: 9,
-      name: "General Knowledge ",
-    },
-    {
-      id: 10,
-      name: "Entertainment: Books ",
-    },
-  ],
-};
-
 test("Sidebar component should fetch categories information and populate the category dropdown on loading the page", async () => {
-  await fetchCategoryData.mockResolvedValue(categories.trivia_categories);
+  const anyResponse = {};
+  await fetchCategoryData.mockResolvedValue(anyResponse);
 
   getCategoryInfo.mockImplementationOnce(() => ({
     categoriesInfo: [" C1 ", "C2"],
@@ -41,8 +29,6 @@ test("Sidebar component should fetch categories information and populate the cat
     expect(await fetchCategoryData).toHaveBeenCalled();
     expect(await fetchCategoryData).toHaveBeenCalledTimes(1);
 
-    expect(getByText(/Select Category/i).textContent).toBe(
-      "Select CategoryAny C1 C2"
-    );
+    expect(getByText(/Category/i).textContent).toBe("CategoryAny C1 C2");
   });
 });
