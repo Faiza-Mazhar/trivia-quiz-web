@@ -91,7 +91,7 @@ const QuizDisplay = ({ quizQuestions }) => {
 
       {replyString && <label>{replyString}</label>}
       <div className="submit-button">
-        <CustomButton onClick={nextQuestion}>Next</CustomButton>
+        <CustomButton onClick={nextQuestion}>NEXT</CustomButton>
       </div>
     </div>
   );
