@@ -66,9 +66,8 @@ const QuizDisplay = ({ quizQuestions }) => {
     }
   };
 
-  const handleChange = (event) => {
-    event.preventDefault();
-    setSelectedAnswer(event.target.value);
+  const handleChange = (value) => {
+    setSelectedAnswer(value);
   };
 
   const handleNextQuestion = () => {
