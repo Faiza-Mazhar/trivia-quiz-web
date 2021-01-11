@@ -9,6 +9,7 @@
   border: none;
   font-family: "Open Sans Condensed", sans-serif;
   cursor: pointer;
+  border-radius: 5px;
 
   &:hover {
     background-color: #2a3121;
@@ -24,6 +25,16 @@
       background-color: #357ae8;
       color: black;
       border: none;
+    }
+  }
+
+  &.answer {
+    background-color: #e2eee2;
+    color: #2a3121;
+
+    &:focus {
+      background-color: #2a3121;
+      color: white;
     }
   }
 }
