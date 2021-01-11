@@ -27,7 +27,6 @@ const QuestionFormComponent = ({
                     value={decodedAnswer}
                     key={decodedAnswer + "radio"}
                     onClick={handleChange}
-                    currentSelectedValue={currentSelectedValue}
                   />
                 </div>
               );

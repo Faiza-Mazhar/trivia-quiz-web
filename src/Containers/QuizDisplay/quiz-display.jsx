@@ -97,7 +97,6 @@ const QuizDisplay = ({ quizQuestions }) => {
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           showSubmitButton={replyString === undefined}
-          currentSelectedValue={selectedAnswer}
         />
       )}
 
