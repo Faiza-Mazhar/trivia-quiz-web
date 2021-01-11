@@ -66,15 +66,13 @@ const QuizDisplay = ({ quizQuestions }) => {
     }
   };
 
-  const handleChange = (event) => {
-    event.preventDefault();
-    setSelectedAnswer(event.target.value);
+  const handleChange = (value) => {
+    setSelectedAnswer(value);
   };
 
   const handleNextQuestion = () => {
-    if (!isLastQuestion && currentQuestionIndex < questions.length) {
-      const index = currentQuestionIndex + 1;
-      setCurrentQuestionIndex(index);
+    if (currentQuestionIndex < questions.length) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
       setReplyString(undefined);
       setAnswers(undefined);
     }
