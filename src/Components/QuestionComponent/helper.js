@@ -1,5 +1,5 @@
 const shuffleAnswers = (correctAnswer, wrongAnswers) => {
-  if (wrongAnswers.length > 1) {
+  if (wrongAnswers.length < 2) {
     return ["True", "False"];
   }
   const answers = [correctAnswer, ...wrongAnswers];

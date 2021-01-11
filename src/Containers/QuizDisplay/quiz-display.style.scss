@@ -6,4 +6,28 @@
   .question-header {
     padding: 10px;
   }
+
+  .question {
+    margin: 40px 30px;
+    align-items: center;
+    text-align: center;
+    font-weight: bolder;
+    font-size: xx-large;
+  }
+
+  .answers-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+
+    .answer-container {
+      flex: 45%;
+    }
+  }
+
+  .submit-button {
+    padding: 10px 35%;
+  }
 }
