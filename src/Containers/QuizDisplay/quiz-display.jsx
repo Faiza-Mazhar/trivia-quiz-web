@@ -71,7 +71,7 @@ const QuizDisplay = ({ quizQuestions }) => {
   };
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex < questions.length) {
+    if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setReplyString(undefined);
       setAnswers(undefined);
