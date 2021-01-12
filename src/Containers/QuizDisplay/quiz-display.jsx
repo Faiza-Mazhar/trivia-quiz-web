@@ -8,16 +8,16 @@ import { getReply } from "../../Components/QuestionComponent/helper";
 import LabelInformation from "../../Components/InformationLabel/information-label";
 
 const QuizDisplay = ({ quizQuestions }) => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(undefined);
-  const [replyString, setReplyString] = useState(undefined);
-  const [questions, setQuizQuestions] = useState(quizQuestions);
-  const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [score, setScore] = useState(0);
+  const [replyString, setReplyString] = useState(undefined);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [questions, setQuizQuestions] = useState(quizQuestions);
+  const [selectedAnswer, setSelectedAnswer] = useState(undefined);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const resetState = () => {
     setCurrentQuestionIndex(0);
-    setSelectedAnswer(undefined);
+    //setSelectedAnswer(undefined);
     setReplyString(undefined);
     setIsLastQuestion(false);
     setScore(0);
@@ -27,10 +27,6 @@ const QuizDisplay = ({ quizQuestions }) => {
     resetState();
     setQuizQuestions(quizQuestions);
   }, [quizQuestions]);
-
-  useEffect(() => {
-    setIsLastQuestion(currentQuestionIndex === questions.length - 1);
-  }, [currentQuestionIndex, questions.length]);
 
   let { category, difficulty, question, correctAnswer, answers } =
     questions[currentQuestionIndex] || {};
@@ -60,6 +56,8 @@ const QuizDisplay = ({ quizQuestions }) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setReplyString(undefined);
       setSelectedAnswer(undefined);
+    } else {
+      setIsLastQuestion(true);
     }
   };
 
