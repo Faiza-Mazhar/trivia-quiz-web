@@ -5,7 +5,7 @@ const useRadioButtons = (name, handleChange) => {
 
   const handleClick = ({ target }) => {
     setValue(target.value);
-    handleChange(target.value);
+    handleChange && handleChange(target.value);
   };
 
   const inputProps = {

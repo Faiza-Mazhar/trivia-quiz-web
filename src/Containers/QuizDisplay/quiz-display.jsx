@@ -78,6 +78,13 @@ const QuizDisplay = ({ quizQuestions }) => {
     }
   };
 
+  if (isLastQuestion) {
+    return (
+      <div className="quiz-container">
+        <label className="label">{`You answered ${score} questions correctly out of ${questions.length}`}</label>
+      </div>
+    );
+  }
   return (
     <div className="quiz-container">
       <QuestionHeader
@@ -96,10 +103,6 @@ const QuizDisplay = ({ quizQuestions }) => {
           handleChange={handleChange}
           showSubmitButton={replyString === undefined}
         />
-      )}
-
-      {isLastQuestion && (
-        <label className="label">{`You answered ${score} questions correctly out of ${questions.length}`}</label>
       )}
 
       {replyString && <label className="label">{replyString}</label>}
