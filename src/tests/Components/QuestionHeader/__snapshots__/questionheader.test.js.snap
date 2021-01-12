@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question Header, if no props are set 1`] = `
+<div
+  className="question-header"
+>
+  <div
+    className="category"
+  >
+    undefined
+  </div>
+  <div
+    className="question-number"
+  >
+    Question: NaN/undefined
+  </div>
+  <div
+    className="difficulty"
+  >
+    undefined
+  </div>
+</div>
+`;
+
+exports[`Question Header, with information 1`] = `
+<div
+  className="question-header"
+>
+  <div
+    className="category"
+  >
+    Category
+  </div>
+  <div
+    className="question-number"
+  >
+    Question: 2/5
+  </div>
+  <div
+    className="difficulty"
+  >
+    Hard
+  </div>
+</div>
+`;

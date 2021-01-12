@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button class changes the class it is isGoogleSignedIn 1`] = `
+<button
+  className=" custom-button"
+  isGoogleSignedIn={true}
+>
+  Click Me
+</button>
+`;
+
+exports[`Button rendered 1`] = `
+<button
+  className=" custom-button"
+>
+  Click Me
+</button>
+`;

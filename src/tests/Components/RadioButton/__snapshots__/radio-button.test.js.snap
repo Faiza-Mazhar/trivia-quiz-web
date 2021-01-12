@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio buttons, if no props are set 1`] = `
+<label
+  className="card"
+>
+  <input />
+</label>
+`;
+
+exports[`Radio buttons, if with props 1`] = `
+<label
+  className="card"
+>
+  value
+  <input
+    name="name"
+    onClick={[Function]}
+    type="radio"
+    value="value"
+  />
+</label>
+`;
