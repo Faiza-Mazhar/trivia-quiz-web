@@ -2,7 +2,6 @@ import React from "react";
 import CustomButton from "../../Components/CustomButton/custom-button";
 import RadioButton from "../../Components/RadioButton/radio-button";
 import useRadioButtons from "../RadioButton/use-radio-button";
-import { decodeHtmlEntities } from "./helper";
 
 import "./question-component.style.scss";
 const QuestionFormComponent = ({
@@ -16,14 +15,14 @@ const QuestionFormComponent = ({
 
   return (
     <div>
-      <div className="question">{decodeHtmlEntities(question)}</div>
+      <div className="question">{question}</div>
       <form onSubmit={handleSubmit}>
         {showSubmitButton && (
           <div>
             <div className="answers-container">
               {answers &&
                 answers.map((answer) => {
-                  const decodedAnswer = decodeHtmlEntities(answer);
+                  const decodedAnswer = answer;
                   return (
                     <div key={decodedAnswer} className="answer-container">
                       <RadioButton

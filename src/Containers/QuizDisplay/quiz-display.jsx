@@ -4,15 +4,11 @@ import "./quiz-display.style.scss";
 import QuestionHeader from "../../Components/QuestionHeader/question-header";
 import CustomButton from "../../Components/CustomButton/custom-button";
 import QuestionFormComponent from "../../Components/QuestionComponent/question-component";
-import {
-  shuffleAnswers,
-  getReply,
-} from "../../Components/QuestionComponent/helper";
+import { getReply } from "../../Components/QuestionComponent/helper";
 
 const QuizDisplay = ({ quizQuestions }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(undefined);
-  const [answers, setAnswers] = useState(undefined);
   const [replyString, setReplyString] = useState(undefined);
   const [questions, setQuizQuestions] = useState(quizQuestions);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
@@ -21,7 +17,6 @@ const QuizDisplay = ({ quizQuestions }) => {
   const resetState = () => {
     setCurrentQuestionIndex(0);
     setSelectedAnswer(undefined);
-    setAnswers(undefined);
     setReplyString(undefined);
     setIsLastQuestion(false);
     setScore(0);
@@ -36,19 +31,15 @@ const QuizDisplay = ({ quizQuestions }) => {
     setIsLastQuestion(currentQuestionIndex === questions.length - 1);
   }, [currentQuestionIndex, questions.length]);
 
-  let {
-    category,
-    difficulty,
-    question,
-    correct_answer,
-    incorrect_answers,
-  } = questions[currentQuestionIndex];
+  let { category, difficulty, question, correctAnswer, answers } = questions[
+    currentQuestionIndex
+  ];
 
-  useEffect(() => {
-    !answers &&
-      setAnswers([...shuffleAnswers(correct_answer, incorrect_answers)]);
-    setReplyString(undefined);
-  }, [answers, correct_answer, incorrect_answers]);
+  // useEffect(() => {
+  //   !answers &&
+  //     setAnswers([...shuffleAnswers(correct_answer, incorrect_answers)]);
+  //   setReplyString(undefined);
+  // }, [answers, correct_answer, incorrect_answers]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,8 +49,8 @@ const QuizDisplay = ({ quizQuestions }) => {
       return;
     }
 
-    if (selectedAnswer !== correct_answer) {
-      setReplyString(getReply(correct_answer));
+    if (selectedAnswer !== correctAnswer) {
+      setReplyString(getReply(correctAnswer));
     } else {
       setReplyString(getReply());
       setScore(score + 1);
@@ -74,7 +65,6 @@ const QuizDisplay = ({ quizQuestions }) => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setReplyString(undefined);
-      setAnswers(undefined);
       setSelectedAnswer(undefined);
     }
   };
