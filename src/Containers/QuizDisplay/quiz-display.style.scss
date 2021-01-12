@@ -3,6 +3,10 @@
   border-radius: 5px;
   height: 95%;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .question-header {
     padding: 10px;
@@ -28,25 +32,36 @@
     }
   }
 
-  .submit-button {
-    padding: 10px 35%;
+  .button {
+    width: 100%;
+    flex: 100%;
   }
 
-  .label {
-    width: auto;
-    height: auto;
-    color: white;
+  .label-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 30px;
 
-    letter-spacing: 0.5px;
-    font-family: inherit;
-    text-align: center;
-    font-weight: bolder;
-    font-size: x-large;
+    .label {
+      flex: 45%;
+      width: auto;
+      height: auto;
+      color: white;
 
-    background-color: #556342;
+      letter-spacing: 0.5px;
+      font-family: inherit;
 
-    border: 1px solid #e2eee2;
-    padding: 10px;
-    border-radius: 5px;
+      font-weight: bolder;
+      font-size: x-large;
+
+      background-color: #556342;
+
+      border: 1px solid #e2eee2;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
   }
 }

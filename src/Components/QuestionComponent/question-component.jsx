@@ -37,7 +37,7 @@ const QuestionFormComponent = ({
                 })}
             </div>
 
-            <div className="submit-button">
+            <div>
               <CustomButton type="submit">SUBMIT</CustomButton>
             </div>
           </div>

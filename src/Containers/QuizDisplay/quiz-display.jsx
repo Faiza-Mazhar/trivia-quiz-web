@@ -81,7 +81,9 @@ const QuizDisplay = ({ quizQuestions }) => {
   if (isLastQuestion) {
     return (
       <div className="quiz-container">
-        <label className="label">{`You answered ${score} questions correctly out of ${questions.length}`}</label>
+        <div className="label-container">
+          <label className="label">{`You answered ${score} questions correctly out of ${questions.length}`}</label>
+        </div>
       </div>
     );
   }
@@ -105,13 +107,15 @@ const QuizDisplay = ({ quizQuestions }) => {
         />
       )}
 
-      {replyString && <label className="label">{replyString}</label>}
-
-      <div className="submit-button">
-        {replyString && replyString.length && (
-          <CustomButton onClick={handleNextQuestion}>NEXT</CustomButton>
-        )}
-      </div>
+      {replyString && (
+        <div className="label-container">
+          <label className="label">{`Your answer: ${selectedAnswer}`}</label>
+          <label className="label">{replyString}</label>
+          <div className="button">
+            <CustomButton onClick={handleNextQuestion}>NEXT</CustomButton>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
