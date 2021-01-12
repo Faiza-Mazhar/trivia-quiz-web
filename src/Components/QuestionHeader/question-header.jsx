@@ -8,7 +8,7 @@ const QuestionHeader = ({
   difficulty,
 }) => {
   const difficultyLevel =
-    difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+    difficulty && difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
   return (
     <div className="question-header">
       <div className="category">{`${category}`}</div>

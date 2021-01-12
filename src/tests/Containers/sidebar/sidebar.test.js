@@ -12,7 +12,7 @@ afterEach(cleanup);
 
 jest.mock("../../../Containers/sidebar/helper");
 
-test("Sidebar component should fetch categories information and populate the category dropdown on loading the page", async () => {
+test.only("Sidebar component should fetch categories information and populate the category dropdown on loading the page", async () => {
   const anyResponse = {};
   await fetchCategoryData.mockResolvedValue(anyResponse);
 

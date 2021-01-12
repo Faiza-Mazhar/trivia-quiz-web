@@ -32,15 +32,8 @@ const QuizDisplay = ({ quizQuestions }) => {
     setIsLastQuestion(currentQuestionIndex === questions.length - 1);
   }, [currentQuestionIndex, questions.length]);
 
-  let { category, difficulty, question, correctAnswer, answers } = questions[
-    currentQuestionIndex
-  ];
-
-  // useEffect(() => {
-  //   !answers &&
-  //     setAnswers([...shuffleAnswers(correct_answer, incorrect_answers)]);
-  //   setReplyString(undefined);
-  // }, [answers, correct_answer, incorrect_answers]);
+  let { category, difficulty, question, correctAnswer, answers } =
+    questions[currentQuestionIndex] || {};
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -7,6 +7,7 @@ const fetchQuestions = async (quizQueryParams) => {
 };
 
 const decodeData = (data) => {
+  if (data === {}) return;
   return data.map((questionItem) => {
     const correctAnswer = decodeHtmlEntities(questionItem.correct_answer);
     const answers = shuffleAnswers(

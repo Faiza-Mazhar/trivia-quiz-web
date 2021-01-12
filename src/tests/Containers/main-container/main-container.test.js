@@ -10,68 +10,124 @@ import {
 } from "../../../Containers/sidebar/helper";
 
 import { fetchQuestions } from "../../../Containers/main-container/fetcher";
-import { act, render, cleanup, fireEvent } from "@testing-library/react";
+import {
+  act,
+  render,
+  waitFor,
+  screen,
+  fireEvent,
+} from "@testing-library/react";
 
-afterEach(cleanup);
 jest.mock("../../../Containers/sidebar/helper");
 jest.mock("../../../Containers/main-container/fetcher");
 
-const categories = {
-  trivia_categories: [
+const questions_response = {
+  questions: [
     {
-      id: 9,
-      name: "General Knowledge ",
-    },
-    {
-      id: 10,
-      name: "Entertainment: Books ",
-    },
-  ],
-};
-
-const questions = {
-  results: [
-    {
-      category: "Science & Nature",
-      type: "multiple",
-      difficulty: "medium",
-      question: "What is the unit of electrical capacitance?",
-      correct_answer: "Farad",
-      incorrect_answers: ["Gauss", "Henry", "Watt"],
-    },
-    {
-      category: "Entertainment: Film",
-      type: "multiple",
+      answers: ["answer1", "answer2", "answer3", "answer4"],
+      category: "Category 1",
+      correctAnswer: "correct answer1",
       difficulty: "hard",
-      question:
-        "The film Mad Max: Fury Road features the Dies Irae from which composer&#039;s requiem?",
-      correct_answer: "Verdi",
-      incorrect_answers: ["Mozart", "Berlioz", "Brahms"],
+      question: "Question 1 Statement",
+      type: "multiple",
+    },
+    {
+      answers: ["True", "False"],
+      category: "Category 2",
+      correctAnswer: "correct answer2",
+      difficulty: "hard",
+      question: "Question 2 Statement",
+      type: "boolean",
     },
   ],
 };
 
-test.todo(
-  "on click play button in side bar, it should update the state in the parent container"
-  // , async () => {
-  // await fetchCategoryData.mockResolvedValue(categories.trivia_categories);
+test("On load, if question data is unavailable, the render the information label component", async () => {
+  const anyResponse = {};
+  await fetchCategoryData.mockResolvedValue(anyResponse);
 
-  // getCategoryInfo.mockImplementationOnce(() => ({
-  //   categoriesInfo: [" C1 ", "C2"],
-  //   categoriesIdsInfo: [9, 10],
-  // }));
+  getCategoryInfo.mockImplementationOnce(() => ({
+    categoriesInfo: [" C1 ", "C2"],
+    categoriesIdsInfo: [9, 10],
+  }));
 
-  // await fetchQuestions.mockResolvedValue(questions);
+  await fetchQuestions.mockResolvedValue(questions_response.questions);
 
-  // await act(async () => {
-  //   const { container, getByText, rerender } = render(
-  //     <MainContainer>
-  //       <Sidebar />
-  //       <QuizDisplay quizQuestions={""} />
-  //     </MainContainer>
-  //   );
+  await act(async () => {
+    const { getByText } = render(<MainContainer />);
+    await waitFor(() => getByText("Loading..."));
 
-  //   fireEvent.click(getByText("PLAY"));
-  // });
-  // }
-);
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
+  });
+});
+
+test("On load, if question data is available, the render the quiz display container", async () => {
+  const anyResponse = {};
+  await fetchCategoryData.mockResolvedValue(anyResponse);
+
+  getCategoryInfo.mockImplementationOnce(() => ({
+    categoriesInfo: [" C1 ", "C2"],
+    categoriesIdsInfo: [9, 10],
+  }));
+
+  await fetchQuestions.mockResolvedValue(questions_response.questions);
+
+  await act(async () => {
+    const { getByText } = render(<MainContainer />);
+    await waitFor(() => getByText("SUBMIT"));
+
+    expect(screen.getByText("Question 1 Statement")).toBeInTheDocument();
+  });
+});
+
+test.only("on click play button in side bar, it should update the state in the parent container", async () => {
+  const anyResponse = {};
+  await fetchCategoryData.mockResolvedValue(anyResponse);
+
+  getCategoryInfo.mockImplementationOnce(() => ({
+    categoriesInfo: [" C1 ", "C2"],
+    categoriesIdsInfo: [9, 10],
+  }));
+
+  const newQuestionResponse = {
+    questions: [
+      {
+        answers: ["answer1", "answer2", "answer3", "answer4"],
+        category: "Category 1",
+        correctAnswer: "New correct answer1",
+        difficulty: "hard",
+        question: "New Question Statement 1",
+        type: "multiple",
+      },
+      {
+        answers: ["answer1", "answer2", "answer3", "answer4"],
+        category: "Category 1",
+        correctAnswer: "New correct answer 2",
+        difficulty: "hard",
+        question: "New Question Statement 2",
+        type: "multiple",
+      },
+    ],
+  };
+
+  await fetchQuestions
+    .mockImplementationOnce(() => Promise.resolve(questions_response.questions))
+    .mockImplementationOnce(() =>
+      Promise.resolve(newQuestionResponse.questions)
+    );
+
+  await act(async () => {
+    const { getByText, rerender } = render(<MainContainer />);
+    await waitFor(() => getByText("PLAY"));
+    fireEvent.click(getByText("PLAY"));
+
+    rerender(
+      <MainContainer>
+        <QuizDisplay quizQuestions={newQuestionResponse.questions} />
+      </MainContainer>
+    );
+    await waitFor(() => getByText("New Question Statement 1"));
+
+    expect(screen.getByText("New Question Statement 1")).toBeInTheDocument();
+  });
+});
