@@ -53,7 +53,7 @@ const QuizDisplay = ({ quizQuestions }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (selectedAnswer === "") {
+    if (selectedAnswer === undefined) {
       alert("Please select an answer");
       return;
     }
@@ -75,6 +75,7 @@ const QuizDisplay = ({ quizQuestions }) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setReplyString(undefined);
       setAnswers(undefined);
+      setSelectedAnswer(undefined);
     }
   };
 
