@@ -60,10 +60,13 @@ const Sidebar = ({ setQuizQueryParams }) => {
 
   return (
     <div className="sidebar">
-      <CategoriesDropdown />
-      <NumQuestionDropdown />
-      <DifficultyLevelDropdown />
-      <QuestionTypeDropdown />
+      <div className="dropdown-menu">
+        <CategoriesDropdown />
+        <NumQuestionDropdown />
+        <DifficultyLevelDropdown />
+        <QuestionTypeDropdown />
+      </div>
+
       <div className="custom-button-container">
         <CustomButton onClick={onPlayButtonClick} type="button">
           PLAY
