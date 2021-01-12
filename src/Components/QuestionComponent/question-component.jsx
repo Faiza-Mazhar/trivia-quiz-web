@@ -11,7 +11,7 @@ const QuestionFormComponent = ({
   handleChange,
   showSubmitButton,
 }) => {
-  const [ans, answerInputProps] = useRadioButtons("answers", handleChange);
+  const [, answerInputProps] = useRadioButtons("answers", handleChange);
 
   return (
     <div>
@@ -29,7 +29,6 @@ const QuestionFormComponent = ({
                         value={decodedAnswer}
                         key={decodedAnswer}
                         inputProps={answerInputProps}
-                        answer={ans}
                       />
                     </div>
                   );
