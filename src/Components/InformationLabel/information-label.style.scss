@@ -1,0 +1,27 @@
+.label-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 30px;
+
+  .label {
+    flex: 45%;
+    width: auto;
+    height: auto;
+    color: white;
+
+    letter-spacing: 0.5px;
+    font-family: inherit;
+
+    font-weight: bolder;
+    font-size: x-large;
+
+    background-color: #556342;
+
+    border: 1px solid #e2eee2;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+}

@@ -5,6 +5,7 @@ import QuestionHeader from "../../Components/QuestionHeader/question-header";
 import CustomButton from "../../Components/CustomButton/custom-button";
 import QuestionFormComponent from "../../Components/QuestionComponent/question-component";
 import { getReply } from "../../Components/QuestionComponent/helper";
+import LabelInformation from "../../Components/InformationLabel/information-label";
 
 const QuizDisplay = ({ quizQuestions }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -70,14 +71,14 @@ const QuizDisplay = ({ quizQuestions }) => {
   };
 
   if (isLastQuestion) {
+    const information = `You answered ${score} questions correctly out of ${questions.length}`;
     return (
       <div className="quiz-container">
-        <div className="label-container">
-          <label className="label">{`You answered ${score} questions correctly out of ${questions.length}`}</label>
-        </div>
+        <LabelInformation information={information} />
       </div>
     );
   }
+
   return (
     <div className="quiz-container">
       <QuestionHeader
