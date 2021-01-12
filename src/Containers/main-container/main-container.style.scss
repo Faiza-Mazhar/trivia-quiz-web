@@ -12,6 +12,17 @@
     flex: 70%;
   }
 
+  .information-container {
+    background-color: #abb899;
+    border-radius: 5px;
+    height: 95%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   @media only screen and (max-width: 699px) {
     .sidebar-container {
       flex: 95%;
