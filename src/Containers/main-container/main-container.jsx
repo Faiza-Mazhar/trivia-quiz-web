@@ -22,7 +22,6 @@ const MainContainer = () => {
       });
   }, [quizQueryParams]);
 
-  console.log({ quizQuestions });
   return (
     <div className="main-container">
       <div className="sidebar-container">
