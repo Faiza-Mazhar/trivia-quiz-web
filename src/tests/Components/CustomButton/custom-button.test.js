@@ -26,3 +26,15 @@ test("Button class changes the class it is isGoogleSignedIn", () => {
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+test("CustomButton rendered the google icon", () => {
+  const component = renderer.create(
+    <CustomButton isGoogleSignedIn>
+      <img alt="google" />
+      Click Me
+    </CustomButton>
+  );
+
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
