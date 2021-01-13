@@ -10,10 +10,10 @@ const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
         <img src={mainLogo} alt="fireSpot" width="60" height="60" />
       </Link>
 
-      <div className="title">Welcome {isUserSignedIn ? userName : ""}</div>
+      <div className="title">WELCOME {isUserSignedIn ? userName : ""}</div>
       <div className="options-container">
         <Link className="option" to="/leaderboard">
-          Leader Board
+          LEADER BOARD
         </Link>
 
         {userName ? (
