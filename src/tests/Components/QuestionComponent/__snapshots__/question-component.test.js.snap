@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question component to show with submit button 1`] = `
+<div>
+  <div
+    className="question"
+  >
+    Question 1 Statement
+  </div>
+  <form
+    onSubmit={[MockFunction]}
+  >
+    <div>
+      <div
+        className="answers-container"
+      >
+        <div
+          className="answer-container"
+        >
+          <label
+            className="card"
+          >
+            answer1
+            <input
+              name="answers"
+              onClick={[Function]}
+              type="radio"
+              value="answer1"
+            />
+          </label>
+        </div>
+        <div
+          className="answer-container"
+        >
+          <label
+            className="card"
+          >
+            answer2
+            <input
+              name="answers"
+              onClick={[Function]}
+              type="radio"
+              value="answer2"
+            />
+          </label>
+        </div>
+        <div
+          className="answer-container"
+        >
+          <label
+            className="card"
+          >
+            answer3
+            <input
+              name="answers"
+              onClick={[Function]}
+              type="radio"
+              value="answer3"
+            />
+          </label>
+        </div>
+        <div
+          className="answer-container"
+        >
+          <label
+            className="card"
+          >
+            answer4
+            <input
+              name="answers"
+              onClick={[Function]}
+              type="radio"
+              value="answer4"
+            />
+          </label>
+        </div>
+      </div>
+      <div
+        className="submit-button"
+      >
+        <button
+          className=" custom-button"
+          type="submit"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`Question component to show with submit button set as false 1`] = `
+<div>
+  <div
+    className="question"
+  >
+    Question 1 Statement
+  </div>
+  <form
+    onSubmit={[MockFunction]}
+  />
+</div>
+`;
