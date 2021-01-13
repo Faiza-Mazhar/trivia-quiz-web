@@ -23,9 +23,12 @@
   &.google-sign-in {
     background-color: #ffffff;
     color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 
     &:hover {
-      background-color: #357ae8;
       color: black;
       border: none;
     }
