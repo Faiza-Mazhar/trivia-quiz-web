@@ -1,0 +1,26 @@
+.sign-in-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #abb899;
+}
+
+.title {
+  margin: 10px 0px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+
+  .new-user-label {
+    padding: 10px;
+    width: 100%;
+    text-align: right;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
