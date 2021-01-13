@@ -23,12 +23,12 @@
   .options-container {
     display: flex;
     flex-direction: row;
-
     align-items: center;
     justify-content: flex-end;
 
     .option {
       padding: 0 10px;
+      cursor: pointer;
     }
   }
 }

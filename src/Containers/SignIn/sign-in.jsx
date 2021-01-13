@@ -2,7 +2,7 @@ import { useState } from "react";
 import CustomButton from "../../Components/CustomButton/custom-button";
 import FormInput from "../../Components/FormInput/form-input";
 import GoogleLogo from "../../assets/googleLogo.png";
-// import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 import "./sign-in.style.scss";
 const SignIn = ({ setIsSignIn }) => {
@@ -49,7 +49,7 @@ const SignIn = ({ setIsSignIn }) => {
         />
         <div className="buttons-container">
           <CustomButton type="submit">SIGN IN</CustomButton>
-          <CustomButton onClick={() => {}} isGoogleSignIn type="button">
+          <CustomButton onClick={signInWithGoogle} isGoogleSignIn type="button">
             <img src={GoogleLogo} alt="google-logo" width="30" height="30" />
             SIGN IN WITH GOOGLE
           </CustomButton>
