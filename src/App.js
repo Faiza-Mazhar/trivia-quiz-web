@@ -41,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <HeaderComponent
-        userName={currentUser.displayName.toUpperCase()}
+        userName={currentUser.displayName}
         isUserSignedIn
         setCurrentUser={setCurrentUser}
       />
