@@ -16,3 +16,15 @@ exports[`Button rendered 1`] = `
   Click Me
 </button>
 `;
+
+exports[`CustomButton rendered the google icon 1`] = `
+<button
+  className=" custom-button"
+  isGoogleSignedIn={true}
+>
+  <img
+    alt="google"
+  />
+  Click Me
+</button>
+`;
