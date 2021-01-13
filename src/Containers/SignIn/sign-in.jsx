@@ -5,6 +5,7 @@ import GoogleLogo from "../../assets/googleLogo.png";
 import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
 import "./sign-in.style.scss";
+
 const SignIn = ({ setIsSignIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,8 +14,7 @@ const SignIn = ({ setIsSignIn }) => {
     event.preventDefault();
 
     try {
-      const { user } = await auth.signInWithEmailAndPassword(email, password);
-      console.log({ user });
+      await auth.signInWithEmailAndPassword(email, password);
       setEmail("");
       setPassword("");
     } catch (error) {
