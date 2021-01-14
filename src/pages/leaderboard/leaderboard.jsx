@@ -4,24 +4,22 @@ import ScoresLayout from "../../Containers/ScoresLayout/scores-layout";
 import InformationLabel from "../../Components/InformationLabel/information-label";
 import { Link } from "react-router-dom";
 
-import { auth, getUserScores } from "../../firebase/firebase.utils.js";
+import { getUserScores } from "../../firebase/firebase.utils.js";
 
 const LeaderBoard = () => {
   const [userScores, setScore] = useState(null);
 
   useEffect(() => {
     !userScores &&
-      auth.onAuthStateChanged((user) => {
-        user &&
-          getUserScores(user.uid).then((scores) => {
-            setScore(scores);
-          });
+      getUserScores().then((scores) => {
+        setScore(scores);
       });
-  }, [userScores]);
+  });
 
+  console.log(userScores);
   return (
     <div className="leaderboard">
-      {userScores ? (
+      {Array.isArray(userScores) ? (
         <ScoresLayout scores={userScores} />
       ) : (
         <div>
