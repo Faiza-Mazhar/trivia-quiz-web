@@ -16,8 +16,6 @@ function App() {
     createdAt: undefined,
   });
 
-  console.log(currentUser);
-
   useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth && !currentUser.id) {

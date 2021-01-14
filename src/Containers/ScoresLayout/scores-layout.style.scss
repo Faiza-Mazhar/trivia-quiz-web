@@ -1,0 +1,22 @@
+.score-container {
+  background-color: #e2eee2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  .index {
+    width: 20%;
+    text-align: left;
+  }
+
+  .category {
+    width: 50%;
+    text-align: left;
+  }
+  .score {
+    width: 20%;
+    text-align: left;
+  }
+}
