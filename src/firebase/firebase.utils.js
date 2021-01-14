@@ -35,7 +35,7 @@ const createUserProfileDocument = async (userAuth) => {
     const createdAt = new Date();
 
     try {
-      await userReference.set({ displayName, email, createdAt });
+      await userReference.set({ displayName, email, createdAt, scores: [] });
     } catch (error) {
       console.log("Error created users: ", error.message);
     }
@@ -44,4 +44,26 @@ const createUserProfileDocument = async (userAuth) => {
   return userReference;
 };
 
-export { auth, fireStore, signInWithGoogle, createUserProfileDocument };
+const addUserScoresDocument = async (currentUser, data) => {
+  if (!currentUser) {
+    return;
+  }
+
+  const userReference = fireStore.doc(`/users/${currentUser.id}`);
+
+  try {
+    await userReference.update({
+      scores: firebase.firestore.FieldValue.arrayUnion(data),
+    });
+  } catch (error) {
+    console.log("Error created users: ", error.message);
+  }
+};
+
+export {
+  auth,
+  fireStore,
+  signInWithGoogle,
+  createUserProfileDocument,
+  addUserScoresDocument,
+};
