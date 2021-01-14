@@ -7,6 +7,8 @@ import QuestionFormComponent from "../../Components/QuestionComponent/question-c
 import { getReply } from "../../Components/QuestionComponent/helper";
 import LabelInformation from "../../Components/InformationLabel/information-label";
 
+import { auth, setUserScore } from "../../firebase/firebase.utils";
+
 const QuizDisplay = ({ quizQuestions }) => {
   const [score, setScore] = useState(0);
   const [replyString, setReplyString] = useState(undefined);
@@ -14,6 +16,7 @@ const QuizDisplay = ({ quizQuestions }) => {
   const [questions, setQuizQuestions] = useState(quizQuestions);
   const [selectedAnswer, setSelectedAnswer] = useState(undefined);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentUserId, setCurrentUserId] = useState(undefined);
 
   const resetState = () => {
     setCurrentQuestionIndex(0);
@@ -27,6 +30,13 @@ const QuizDisplay = ({ quizQuestions }) => {
     resetState();
     setQuizQuestions(quizQuestions);
   }, [quizQuestions]);
+
+  useEffect(() => {
+    !currentUserId &&
+      auth.onAuthStateChanged((user) => {
+        setCurrentUserId(user.uid);
+      });
+  }, [currentUserId]);
 
   let { category, difficulty, question, correctAnswer, answers } =
     questions[currentQuestionIndex] || {};
@@ -62,7 +72,10 @@ const QuizDisplay = ({ quizQuestions }) => {
   };
 
   if (isLastQuestion) {
-    const information = `You answered ${score} questions correctly out of ${questions.length}`;
+    const totalQuestions = questions.length;
+    const information = `You answered ${score} questions correctly out of ${totalQuestions}`;
+
+    setUserScore({ currentUserId, category, score, totalQuestions });
     return (
       <div className="quiz-container">
         <LabelInformation information={information} />

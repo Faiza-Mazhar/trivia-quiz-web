@@ -48,13 +48,21 @@ const createUserProfileDocument = async (userAuth) => {
   return userReference;
 };
 
-const setUserScores = async (currentUser, data) => {
-  if (!currentUser) {
+const setUserScore = async ({
+  currentUserId,
+  category,
+  score,
+  totalQuestions,
+}) => {
+  if (!currentUserId) {
     return;
   }
 
-  const userReference = fireStore.doc(`/users/${currentUser.id}`);
-
+  const userReference = fireStore.doc(`/users/${currentUserId}`);
+  const data = {
+    category: category,
+    score: `${score}/${totalQuestions}`,
+  };
   try {
     await userReference.update({
       scores: firebase.firestore.FieldValue.arrayUnion(data),
@@ -83,7 +91,7 @@ export {
   fireStore,
   signInWithGoogle,
   createUserProfileDocument,
-  setUserScores,
+  setUserScore,
   getUserScores,
   firebase,
   getCurrentUserId,
