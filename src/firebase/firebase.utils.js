@@ -60,11 +60,10 @@ const getUserScores = async () => {
   const currentUser = firebase.auth().currentUser;
   if (!currentUser) return;
 
-  console.log("here");
   let userId = currentUser.uid;
-
   const userReference = fireStore.doc(`/users/${userId}`);
   const user = await userReference.get();
+
   if (!user.exists) {
     console.log("No such document!");
   } else {

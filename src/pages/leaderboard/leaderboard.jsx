@@ -16,7 +16,6 @@ const LeaderBoard = () => {
       });
   });
 
-  console.log(userScores);
   return (
     <div className="leaderboard">
       {Array.isArray(userScores) ? (
