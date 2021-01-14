@@ -17,10 +17,6 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const fireStore = firebase.firestore();
 
-const getCurrentUserId = (setUserId) => {
-  firebase.auth().onAuthStateChanged((user) => setUserId(user.uid));
-};
-
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
@@ -93,6 +89,4 @@ export {
   createUserProfileDocument,
   setUserScore,
   getUserScores,
-  firebase,
-  getCurrentUserId,
 };

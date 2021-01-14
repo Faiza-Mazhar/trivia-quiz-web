@@ -24,7 +24,7 @@ const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
       </div>
       <div className="options-container">
         <Link className="option" to="/leaderboard">
-          LEADER BOARD
+          SCORE BOARD
         </Link>
 
         {userName ? (

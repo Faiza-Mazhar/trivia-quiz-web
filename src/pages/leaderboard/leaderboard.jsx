@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./leaderboard.style.scss";
 import ScoresLayout from "../../Containers/ScoresLayout/scores-layout";
+import InformationLabel from "../../Components/InformationLabel/information-label";
+import { Link } from "react-router-dom";
 
 import { auth, getUserScores } from "../../firebase/firebase.utils.js";
 
@@ -10,15 +12,29 @@ const LeaderBoard = () => {
   useEffect(() => {
     !userScores &&
       auth.onAuthStateChanged((user) => {
-        getUserScores(user.uid).then((scores) => {
-          setScore(scores);
-        });
+        user &&
+          getUserScores(user.uid).then((scores) => {
+            setScore(scores);
+          });
       });
   }, [userScores]);
 
   return (
     <div className="leaderboard">
-      <ScoresLayout scores={userScores} />
+      {userScores ? (
+        <ScoresLayout scores={userScores} />
+      ) : (
+        <div>
+          <InformationLabel
+            information={"PLEASE SIGN IN TO SEE YOUR SCOREBOARD"}
+          />
+          <div className="link">
+            <Link className="option" to="/signin">
+              SIGN IN
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

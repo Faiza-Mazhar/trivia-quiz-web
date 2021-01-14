@@ -34,7 +34,7 @@ const QuizDisplay = ({ quizQuestions }) => {
   useEffect(() => {
     !currentUserId &&
       auth.onAuthStateChanged((user) => {
-        setCurrentUserId(user.uid);
+        user && setCurrentUserId(user.uid);
       });
   }, [currentUserId]);
 
