@@ -17,6 +17,10 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const fireStore = firebase.firestore();
 
+const getCurrentUserId = (setUserId) => {
+  firebase.auth().onAuthStateChanged((user) => setUserId(user.uid));
+};
+
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
@@ -44,7 +48,7 @@ const createUserProfileDocument = async (userAuth) => {
   return userReference;
 };
 
-const addUserScoresDocument = async (currentUser, data) => {
+const setUserScores = async (currentUser, data) => {
   if (!currentUser) {
     return;
   }
@@ -60,10 +64,27 @@ const addUserScoresDocument = async (currentUser, data) => {
   }
 };
 
+const getUserScores = async (userId) => {
+  if (!userId) {
+    return;
+  }
+
+  const userReference = fireStore.doc(`/users/${userId}`);
+  const user = await userReference.get();
+  if (!user.exists) {
+    console.log("No such document!");
+  } else {
+    return user.data().scores;
+  }
+};
+
 export {
   auth,
   fireStore,
   signInWithGoogle,
   createUserProfileDocument,
-  addUserScoresDocument,
+  setUserScores,
+  getUserScores,
+  firebase,
+  getCurrentUserId,
 };
