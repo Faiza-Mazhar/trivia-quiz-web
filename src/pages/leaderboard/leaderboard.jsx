@@ -4,17 +4,25 @@ import ScoresLayout from "../../Containers/ScoresLayout/scores-layout";
 import InformationLabel from "../../Components/InformationLabel/information-label";
 import { Link } from "react-router-dom";
 
-import { getUserScores } from "../../firebase/firebase.utils.js";
+import { auth, getUserScores } from "../../firebase/firebase.utils.js";
 
 const LeaderBoard = () => {
   const [userScores, setScore] = useState(null);
 
   useEffect(() => {
-    !userScores &&
-      getUserScores().then((scores) => {
+    let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (!userAuth) {
+        setScore(null);
+        return;
+      }
+      const id = userAuth.uid;
+      getUserScores(id).then((scores) => {
         setScore(scores);
       });
-  });
+    });
+
+    return () => unsubscribeFromAuth();
+  }, [userScores]);
 
   return (
     <div className="leaderboard">

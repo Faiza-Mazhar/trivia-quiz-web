@@ -56,12 +56,9 @@ const setUserScore = async ({ category, score, totalQuestions }) => {
   }
 };
 
-const getUserScores = async () => {
-  const currentUser = firebase.auth().currentUser;
-  if (!currentUser) return;
-
-  let userId = currentUser.uid;
-  const userReference = fireStore.doc(`/users/${userId}`);
+const getUserScores = async (id) => {
+  if (!id) return;
+  const userReference = fireStore.doc(`/users/${id}`);
   const user = await userReference.get();
 
   if (!user.exists) {
