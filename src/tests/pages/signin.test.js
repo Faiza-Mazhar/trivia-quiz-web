@@ -1,13 +1,6 @@
 import SignInAndSignUpPage from "../../pages/signin-signup/signin-signup";
 
-import {
-  act,
-  render,
-  waitFor,
-  screen,
-  fireEvent,
-  cleanup,
-} from "@testing-library/react";
+import { render, waitFor, screen, fireEvent } from "@testing-library/react";
 
 test("On loading sign in page, SignIn component is rendered", () => {
   render(<SignInAndSignUpPage />);
