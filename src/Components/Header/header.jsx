@@ -3,6 +3,15 @@ import "./header.style.scss";
 import { Link } from "react-router-dom";
 import mainLogo from "../../assets/trivia-quiz.png";
 import { auth } from "../../firebase/firebase.utils";
+
+const getFirstName = (userName) => {
+  if (!userName) {
+    return;
+  }
+
+  const firstName = userName.split(" ")[0];
+  return firstName && firstName.toUpperCase();
+};
 const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
   return (
     <header className="header">
@@ -10,10 +19,12 @@ const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
         <img src={mainLogo} alt="fireSpot" width="60" height="60" />
       </Link>
 
-      <div className="title">WELCOME {isUserSignedIn ? userName : ""}</div>
+      <div className="title">
+        WELCOME {isUserSignedIn ? getFirstName(userName) : ""}
+      </div>
       <div className="options-container">
         <Link className="option" to="/leaderboard">
-          LEADER BOARD
+          SCORE BOARD
         </Link>
 
         {userName ? (

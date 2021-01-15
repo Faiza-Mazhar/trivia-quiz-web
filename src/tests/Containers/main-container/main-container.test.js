@@ -57,6 +57,10 @@ const newQuestionResponse = {
   ],
 };
 
+const user = {
+  uid: "user id",
+};
+
 const setup = async () => {
   const anyResponse = {};
   await fetchCategoryData.mockResolvedValue(anyResponse);

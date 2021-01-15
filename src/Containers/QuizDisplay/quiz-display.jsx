@@ -7,6 +7,8 @@ import QuestionFormComponent from "../../Components/QuestionComponent/question-c
 import { getReply } from "../../Components/QuestionComponent/helper";
 import LabelInformation from "../../Components/InformationLabel/information-label";
 
+import { setUserScore } from "../../firebase/firebase.utils";
+
 const QuizDisplay = ({ quizQuestions }) => {
   const [score, setScore] = useState(0);
   const [replyString, setReplyString] = useState(undefined);
@@ -62,7 +64,10 @@ const QuizDisplay = ({ quizQuestions }) => {
   };
 
   if (isLastQuestion) {
-    const information = `You answered ${score} questions correctly out of ${questions.length}`;
+    const totalQuestions = questions.length;
+    const information = `You answered ${score} questions correctly out of ${totalQuestions}`;
+
+    setUserScore({ category, score, totalQuestions });
     return (
       <div className="quiz-container">
         <LabelInformation information={information} />
