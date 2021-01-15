@@ -17,7 +17,7 @@ function App() {
   });
 
   useEffect(() => {
-    auth.onAuthStateChanged(async (userAuth) => {
+    let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth && !currentUser.id) {
         const userRef = await createUserProfileDocument(userAuth);
 
@@ -34,6 +34,7 @@ function App() {
         });
       }
     });
+    return () => unsubscribeFromAuth();
   }, [currentUser]);
 
   return (
