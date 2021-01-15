@@ -6,7 +6,7 @@ import Homepage from "./pages/home/homepage";
 import SignInAndSignUpPage from "./pages/signin-signup/signin-signup";
 import LeaderBoard from "./pages/leaderboard/leaderboard";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { auth, getCurrentUser } from "./firebase/firebase.utils";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({
@@ -19,19 +19,7 @@ function App() {
   useEffect(() => {
     let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth && !currentUser.id) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot((snapshot) => {
-          if (snapshot.exists) {
-            const data = {
-              ...currentUser,
-              id: snapshot.id,
-              ...snapshot.data(),
-            };
-
-            setCurrentUser(data);
-          }
-        });
+        getCurrentUser(userAuth, setCurrentUser);
       }
     });
     return () => unsubscribeFromAuth();
