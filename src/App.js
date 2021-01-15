@@ -17,7 +17,7 @@ function App() {
   });
 
   useEffect(() => {
-    let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    let unsubscribeFromAuth = auth.onAuthStateChanged((userAuth) => {
       if (userAuth && !currentUser.id) {
         getCurrentUser(userAuth, setCurrentUser);
       }
