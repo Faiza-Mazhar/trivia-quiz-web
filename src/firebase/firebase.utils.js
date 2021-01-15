@@ -14,12 +14,14 @@ const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
 };
 
+const getUserReferences = (id) => fireStore.doc(`/users/${id}`);
+
 const createUserProfileDocument = async (userAuth) => {
   if (!userAuth) {
     return;
   }
 
-  const userReference = fireStore.doc(`/users/${userAuth.uid}`);
+  const userReference = getUserReferences(userAuth.uid);
   const snapshot = await userReference.get();
 
   if (!snapshot.exists) {
@@ -36,13 +38,25 @@ const createUserProfileDocument = async (userAuth) => {
   return userReference;
 };
 
+const getCurrentUser = async (userAuth, setCurrentUser) => {
+  const userReference = await createUserProfileDocument(userAuth);
+  userReference.onSnapshot((snapshot) => {
+    if (snapshot.exists) {
+      setCurrentUser({
+        id: snapshot.id,
+        ...snapshot.data(),
+      });
+    }
+  });
+};
+
 const setUserScore = async ({ category, score, totalQuestions }) => {
   const currentUser = firebase.auth().currentUser;
   if (!currentUser) return;
 
   let userId = currentUser.uid;
 
-  const userReference = fireStore.doc(`/users/${userId}`);
+  const userReference = getUserReferences(userId);
   const data = {
     category: category,
     score: `${score}/${totalQuestions}`,
@@ -58,13 +72,13 @@ const setUserScore = async ({ category, score, totalQuestions }) => {
 
 const getUserScores = async (id) => {
   if (!id) return;
-  const userReference = fireStore.doc(`/users/${id}`);
-  const user = await userReference.get();
+  const userReference = getUserReferences(id);
+  const snapshot = await userReference.get();
 
-  if (!user.exists) {
+  if (!snapshot.exists) {
     console.log("No such document!");
   } else {
-    return user.data().scores;
+    return snapshot.data().scores;
   }
 };
 
@@ -75,4 +89,5 @@ export {
   createUserProfileDocument,
   setUserScore,
   getUserScores,
+  getCurrentUser,
 };
