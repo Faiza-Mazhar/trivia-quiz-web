@@ -6,7 +6,9 @@ const ScoresLayout = ({ scores }) => {
       <div className="score-container headings">
         <div className="index">No.</div>
         <div className="category">Category</div>
-        <div className="score">Score</div>
+        <div className="score-layout">
+          <div className="score">Score</div>
+        </div>
       </div>
 
       {scores &&
@@ -14,7 +16,9 @@ const ScoresLayout = ({ scores }) => {
           <div key={index} className="score-container">
             <div className="index">{index + 1}</div>
             <div className="category">{category}</div>
-            <div className="score">{score}</div>
+            <div className="score-layout">
+              <div className="score">{score}</div>
+            </div>
           </div>
         ))}
     </div>

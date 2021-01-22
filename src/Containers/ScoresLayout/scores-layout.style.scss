@@ -1,13 +1,14 @@
 .score-container {
   background-color: #e2eee2;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
+
   .index {
-    width: 20%;
+    width: 10%;
     text-align: left;
   }
 
@@ -15,8 +16,13 @@
     width: 50%;
     text-align: left;
   }
+
+  .score-layout {
+    width: 10%;
+    display: flex;
+    justify-content: flex-start;
+  }
   .score {
-    width: 20%;
     text-align: left;
   }
 }
