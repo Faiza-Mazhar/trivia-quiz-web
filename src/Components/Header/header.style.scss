@@ -10,17 +10,19 @@
   margin: 10px;
 
   .logo {
-    width: 65px;
+    width: 33%;
     height: 65px;
-    padding: 10px;
     align-items: center;
   }
 
   .title {
+    width: 33%;
+    text-align: center;
     align-items: center;
   }
 
   .options-container {
+    width: 33%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -30,5 +32,20 @@
       padding: 0 10px;
       cursor: pointer;
     }
+  }
+}
+
+@media only screen and (max-width: 699px) {
+  .logo {
+    flex: 25%;
+  }
+
+  .title {
+    flex: 25%;
+    text-align: centre;
+  }
+
+  .options-container {
+    flex: 45%;
   }
 }
