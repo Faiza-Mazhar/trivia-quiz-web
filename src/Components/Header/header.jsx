@@ -12,6 +12,7 @@ const getFirstName = (userName) => {
   const firstName = userName.split(" ")[0];
   return firstName && firstName.toUpperCase();
 };
+
 const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
   return (
     <header className="header">
@@ -22,6 +23,7 @@ const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
       <div className="title">
         WELCOME {isUserSignedIn ? getFirstName(userName) : ""}
       </div>
+
       <div className="options-container">
         <Link className="option" to="/leaderboard">
           SCORE BOARD
