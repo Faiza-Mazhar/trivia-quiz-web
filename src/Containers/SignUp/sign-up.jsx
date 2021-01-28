@@ -29,6 +29,12 @@ const SignUp = ({ setIsSignIn }) => {
 
       await createUserProfileDocument({ ...user, displayName });
 
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          window.location = "/";
+        }
+      });
+
       setEmail("");
       setPassword("");
       setDisplayName("");
