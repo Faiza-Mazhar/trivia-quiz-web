@@ -18,7 +18,7 @@ exports[`Question component to show with submit button 1`] = `
           className="answer-container"
         >
           <label
-            className="card"
+            className="radio-button-label"
           >
             answer1
             <input
@@ -33,7 +33,7 @@ exports[`Question component to show with submit button 1`] = `
           className="answer-container"
         >
           <label
-            className="card"
+            className="radio-button-label"
           >
             answer2
             <input
@@ -48,7 +48,7 @@ exports[`Question component to show with submit button 1`] = `
           className="answer-container"
         >
           <label
-            className="card"
+            className="radio-button-label"
           >
             answer3
             <input
@@ -63,7 +63,7 @@ exports[`Question component to show with submit button 1`] = `
           className="answer-container"
         >
           <label
-            className="card"
+            className="radio-button-label"
           >
             answer4
             <input
