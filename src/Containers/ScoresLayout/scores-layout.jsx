@@ -17,7 +17,7 @@ const ScoresLayout = ({ scores }) => {
             <div className="index">{index + 1}</div>
             <div className="category">{category}</div>
             <div className="score-layout">
-              <div className="score">{score}</div>
+              <div>{score}</div>
             </div>
           </div>
         ))}

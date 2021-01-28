@@ -8,21 +8,16 @@
   border-radius: 5px;
 
   .index {
-    width: 10%;
+    width: 50%;
     text-align: left;
   }
 
   .category {
-    width: 50%;
+    width: 60%;
     text-align: left;
   }
 
   .score-layout {
     width: 10%;
-    display: flex;
-    justify-content: flex-start;
-  }
-  .score {
-    text-align: left;
   }
 }
