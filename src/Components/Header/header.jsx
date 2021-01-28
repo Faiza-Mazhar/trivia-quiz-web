@@ -2,7 +2,7 @@ import React from "react";
 import "./header.style.scss";
 import { Link } from "react-router-dom";
 import mainLogo from "../../assets/trivia-quiz.png";
-import { auth } from "../../firebase/firebase.utils";
+import { signOut } from "../../firebase/firebase.utils";
 
 const getFirstName = (userName) => {
   if (!userName) {
@@ -33,7 +33,7 @@ const HeaderComponent = ({ userName, setCurrentUser }) => {
           <div
             className="option"
             onClick={() => {
-              auth.signOut();
+              signOut();
               setCurrentUser({});
             }}
           >

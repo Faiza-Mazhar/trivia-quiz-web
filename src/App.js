@@ -6,7 +6,7 @@ import Homepage from "./pages/home/homepage";
 import SignInAndSignUpPage from "./pages/signin-signup/signin-signup";
 import LeaderBoard from "./pages/leaderboard/leaderboard";
 
-import { auth, getCurrentUser } from "./firebase/firebase.utils";
+import { getCurrentUser } from "./firebase/firebase.utils";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({
@@ -17,12 +17,9 @@ function App() {
   });
 
   useEffect(() => {
-    let unsubscribeFromAuth = auth.onAuthStateChanged((userAuth) => {
-      if (userAuth && !currentUser.id) {
-        getCurrentUser(userAuth, setCurrentUser);
-      }
-    });
-    return () => unsubscribeFromAuth();
+    if (!currentUser.id) {
+      getCurrentUser(setCurrentUser);
+    }
   }, [currentUser]);
 
   return (
