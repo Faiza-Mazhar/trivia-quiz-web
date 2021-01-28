@@ -105,7 +105,7 @@ export {
   signOut,
   setUserScore,
   getUserScores,
-  getCurrentUserName as getCurrentUser,
+  getCurrentUserName,
   signInWithGoogle,
   signUpWithEmailAndPassword,
   signInWithEmailAndPassword,

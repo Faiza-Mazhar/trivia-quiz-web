@@ -6,7 +6,7 @@ import Homepage from "./pages/home/homepage";
 import SignInAndSignUpPage from "./pages/signin-signup/signin-signup";
 import LeaderBoard from "./pages/leaderboard/leaderboard";
 
-import { getCurrentUser as getCurrentUserName } from "./firebase/firebase.utils";
+import { getCurrentUserName } from "./firebase/firebase.utils";
 
 function App() {
   const [userName, setCurrentUserName] = useState(undefined);
