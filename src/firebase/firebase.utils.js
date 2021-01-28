@@ -12,11 +12,6 @@ const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({ prompt: "select_account" });
   auth.signInWithPopup(provider);
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      window.location = "/";
-    }
-  });
 };
 
 const getUserReferences = (id) => fireStore.doc(`/users/${id}`);
