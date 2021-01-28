@@ -1,39 +1,36 @@
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import HeaderComponent from "./Components/Header/header";
 import Homepage from "./pages/home/homepage";
 import SignInAndSignUpPage from "./pages/signin-signup/signin-signup";
 import LeaderBoard from "./pages/leaderboard/leaderboard";
 
-import { auth, getCurrentUser } from "./firebase/firebase.utils";
+import { getCurrentUserName } from "./firebase/firebase.utils";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({
-    id: undefined,
-    displayName: undefined,
-    email: undefined,
-    createdAt: undefined,
-  });
+  const [userName, setCurrentUserName] = useState(undefined);
 
   useEffect(() => {
-    let unsubscribeFromAuth = auth.onAuthStateChanged((userAuth) => {
-      if (userAuth && !currentUser.id) {
-        getCurrentUser(userAuth, setCurrentUser);
-      }
-    });
-    return () => unsubscribeFromAuth();
-  }, [currentUser]);
+    if (!userName) {
+      getCurrentUserName(setCurrentUserName);
+    }
+  }, [userName]);
 
   return (
     <div className="App">
       <HeaderComponent
-        userName={currentUser.displayName}
-        isUserSignedIn
-        setCurrentUser={setCurrentUser}
+        userName={userName}
+        setCurrentUser={setCurrentUserName}
       />
       <Switch>
-        <Route path="/signin" exact component={SignInAndSignUpPage} />
+        <Route
+          path="/signin"
+          exact
+          render={() =>
+            !userName ? <SignInAndSignUpPage /> : <Redirect to="/" />
+          }
+        />
         <Route path="/leaderboard" exact component={LeaderBoard} />
         <Route path="/" exact component={Homepage} />
       </Switch>

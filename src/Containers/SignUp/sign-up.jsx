@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CustomButton from "../../Components/CustomButton/custom-button";
 import FormInput from "../../Components/FormInput/form-input";
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { signUpWithEmailAndPassword } from "../../firebase/firebase.utils";
 
 import "./signup.style.scss";
 
@@ -22,12 +22,7 @@ const SignUp = ({ setIsSignIn }) => {
     }
 
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      await createUserProfileDocument({ ...user, displayName });
+      signUpWithEmailAndPassword({ email, password, displayName });
 
       setEmail("");
       setPassword("");
