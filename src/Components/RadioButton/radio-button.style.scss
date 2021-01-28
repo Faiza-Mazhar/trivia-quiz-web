@@ -1,8 +1,6 @@
-.card {
+.radio-button-label {
   padding: 10px;
-  width: 90%;
-  height: 90%;
-  margin: 10px;
+
   display: flex;
   cursor: pointer;
   background-color: #e2eee2;
@@ -23,7 +21,7 @@ input[type="radio"]:after {
   height: 15px;
   border-radius: 15px;
   top: -2px;
-  left: -1px;
+  left: -2px;
   position: relative;
   background-color: #d1d3d1;
   content: "";
@@ -37,7 +35,7 @@ input[type="radio"]:checked:after {
   height: 15px;
   border-radius: 15px;
   top: -2px;
-  left: -1px;
+  left: -2px;
   position: relative;
   background-color: #556342;
   content: "";
