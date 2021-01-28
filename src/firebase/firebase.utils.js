@@ -61,7 +61,9 @@ const getCurrentUserName = async (setCurrentUser) => {
       setCurrentUser(undefined);
       return;
     }
-    setCurrentUser(userAuth.displayName);
+    const userReference = getUserReferences(userAuth.uid);
+    const snapshot = await userReference.get();
+    setCurrentUser(snapshot.data().displayName);
   });
 };
 
