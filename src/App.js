@@ -14,6 +14,7 @@ function App() {
   useEffect(() => {
     !userName && getCurrentUserName(setCurrentUserName);
   }, [userName]);
+
   return (
     <div className="App">
       <HeaderComponent

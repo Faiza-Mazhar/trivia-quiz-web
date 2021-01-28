@@ -108,7 +108,6 @@ const getUserScores = async () => {
 };
 
 export {
-  auth,
   signOut,
   setUserScore,
   getUserScores,
