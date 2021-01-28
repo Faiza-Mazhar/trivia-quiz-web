@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Information label is rendered is correct props 1`] = `
+exports[`Information label renders correct props 1`] = `
 <div
   className="label-container"
 >

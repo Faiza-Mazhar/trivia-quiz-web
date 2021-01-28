@@ -3,12 +3,12 @@
   align-items: center;
   text-align: center;
   font-weight: bolder;
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 .submit-button {
   width: 50%;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .answers-container {
@@ -16,9 +16,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  padding-bottom: 10px;
 
   .answer-container {
-    flex: 40%;
+    flex: 100%;
   }
 }
