@@ -6,34 +6,29 @@ import Homepage from "./pages/home/homepage";
 import SignInAndSignUpPage from "./pages/signin-signup/signin-signup";
 import LeaderBoard from "./pages/leaderboard/leaderboard";
 
-import { getCurrentUser } from "./firebase/firebase.utils";
+import { getCurrentUser as getCurrentUserName } from "./firebase/firebase.utils";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({
-    id: undefined,
-    displayName: undefined,
-    email: undefined,
-    createdAt: undefined,
-  });
+  const [userName, setCurrentUserName] = useState(undefined);
 
   useEffect(() => {
-    if (!currentUser.id) {
-      getCurrentUser(setCurrentUser);
+    if (!userName) {
+      getCurrentUserName(setCurrentUserName);
     }
-  }, [currentUser]);
+  }, [userName]);
 
   return (
     <div className="App">
       <HeaderComponent
-        userName={currentUser.displayName}
-        setCurrentUser={setCurrentUser}
+        userName={userName}
+        setCurrentUser={setCurrentUserName}
       />
       <Switch>
         <Route
           path="/signin"
           exact
           render={() =>
-            !currentUser.id ? <SignInAndSignUpPage /> : <Redirect to="/" />
+            !userName ? <SignInAndSignUpPage /> : <Redirect to="/" />
           }
         />
         <Route path="/leaderboard" exact component={LeaderBoard} />

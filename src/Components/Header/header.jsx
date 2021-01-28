@@ -4,14 +4,7 @@ import { Link } from "react-router-dom";
 import mainLogo from "../../assets/trivia-quiz.png";
 import { signOut } from "../../firebase/firebase.utils";
 
-const getFirstName = (userName) => {
-  if (!userName) {
-    return;
-  }
-
-  const firstName = userName.split(" ")[0];
-  return firstName && firstName.toUpperCase();
-};
+const getFirstName = (userName) => userName.split(" ")[0].toUpperCase();
 
 const HeaderComponent = ({ userName, setCurrentUser }) => {
   return (
@@ -34,7 +27,7 @@ const HeaderComponent = ({ userName, setCurrentUser }) => {
             className="option"
             onClick={() => {
               signOut();
-              setCurrentUser({});
+              setCurrentUser(undefined);
             }}
           >
             SIGN OUT

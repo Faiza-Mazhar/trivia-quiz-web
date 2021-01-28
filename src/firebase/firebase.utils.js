@@ -12,6 +12,13 @@ const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({ prompt: "select_account" });
   auth.signInWithPopup(provider);
+
+  auth.onAuthStateChanged(async (userAuth) => {
+    if (!userAuth) {
+      return;
+    }
+    await createUserProfileDocument(userAuth);
+  });
 };
 
 const signOut = () => auth.signOut();
@@ -21,7 +28,6 @@ const signInWithEmailAndPassword = async (email, password) =>
 
 const signUpWithEmailAndPassword = async ({ email, password, displayName }) => {
   const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
   await createUserProfileDocument({ ...user, displayName });
 };
 
@@ -49,28 +55,22 @@ const createUserProfileDocument = async (userAuth) => {
   return userReference;
 };
 
-const getCurrentUser = async (setCurrentUser) => {
+const getCurrentUserName = async (setCurrentUser) => {
   auth.onAuthStateChanged(async (userAuth) => {
-    const userReference = await createUserProfileDocument(userAuth);
-    if (!userReference) return;
-    userReference.onSnapshot((snapshot) => {
-      if (snapshot.exists) {
-        setCurrentUser({
-          id: snapshot.id,
-          ...snapshot.data(),
-        });
-      }
-    });
+    if (!userAuth) {
+      setCurrentUser(undefined);
+      return;
+    }
+    setCurrentUser(userAuth.displayName);
   });
 };
 
 const setUserScore = async ({ category, score, totalQuestions }) => {
   const currentUser = firebase.auth().currentUser;
   if (!currentUser) return;
-
   let userId = currentUser.uid;
-
   const userReference = getUserReferences(userId);
+
   const data = {
     category: category,
     score: `${score}/${totalQuestions}`,
@@ -87,9 +87,9 @@ const setUserScore = async ({ category, score, totalQuestions }) => {
 const getUserScores = async () => {
   const currentUser = firebase.auth().currentUser;
   if (!currentUser) return;
-
   let userId = currentUser.uid;
   const userReference = getUserReferences(userId);
+
   const snapshot = await userReference.get();
 
   if (!snapshot.exists) {
@@ -103,7 +103,7 @@ export {
   signOut,
   setUserScore,
   getUserScores,
-  getCurrentUser,
+  getCurrentUserName as getCurrentUser,
   signInWithGoogle,
   signUpWithEmailAndPassword,
   signInWithEmailAndPassword,
