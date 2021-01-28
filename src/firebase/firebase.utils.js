@@ -62,8 +62,14 @@ const getCurrentUserName = async (setCurrentUser) => {
       return;
     }
     const userReference = getUserReferences(userAuth.uid);
-    const snapshot = await userReference.get();
-    setCurrentUser(snapshot.data().displayName);
+
+    userReference.onSnapshot((snapshot) => {
+      if (snapshot.exists) {
+        setCurrentUser(snapshot.data().displayName);
+      } else {
+        setCurrentUser(undefined);
+      }
+    });
   });
 };
 
@@ -95,18 +101,19 @@ const getUserScores = async () => {
   const snapshot = await userReference.get();
 
   if (!snapshot.exists) {
-    console.log("No such document!");
+    console.log("Score does not exist");
   } else {
     return snapshot.data().scores;
   }
 };
 
 export {
+  auth,
   signOut,
   setUserScore,
   getUserScores,
-  getCurrentUserName,
   signInWithGoogle,
+  getCurrentUserName,
   signUpWithEmailAndPassword,
   signInWithEmailAndPassword,
 };

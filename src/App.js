@@ -12,11 +12,8 @@ function App() {
   const [userName, setCurrentUserName] = useState(undefined);
 
   useEffect(() => {
-    if (!userName) {
-      getCurrentUserName(setCurrentUserName);
-    }
+    !userName && getCurrentUserName(setCurrentUserName);
   }, [userName]);
-
   return (
     <div className="App">
       <HeaderComponent
