@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sign form renders with correct props 1`] = `
+<div
+  className="sign-in"
+>
+  <div
+    className="title"
+  >
+    <span>
+       Sign in with your email and password.
+    </span>
+  </div>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="group"
+    >
+      <label
+        className=" form-input-label"
+      >
+        Email
+      </label>
+      <input
+        className="form-input"
+        name="email"
+        onChange={[Function]}
+        required={true}
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      className="group"
+    >
+      <label
+        className=" form-input-label"
+      >
+        Password
+      </label>
+      <input
+        autoComplete="on"
+        className="form-input"
+        name="password"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="buttons-container"
+    >
+      <button
+        className=" custom-button"
+        type="submit"
+      >
+        SIGN IN
+      </button>
+      <button
+        className="google-sign-in custom-button"
+        onClick={[Function]}
+        type="button"
+      >
+        <img
+          alt="google-logo"
+          height="30"
+          src="googleLogo.png"
+          width="30"
+        />
+        SIGN IN WITH GOOGLE
+      </button>
+      <label
+        className="new-user-label"
+        onClick={[Function]}
+      >
+        New User?
+      </label>
+    </div>
+  </form>
+</div>
+`;

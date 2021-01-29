@@ -1,11 +1,11 @@
 .main-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  padding: 0 10px;
+  margin: 10px;
 
   .sidebar-container {
     flex: 25%;
+    margin-right: 10px;
   }
 
   .quiz-display-container {
@@ -25,7 +25,9 @@
 
   @media only screen and (max-width: 699px) {
     .sidebar-container {
-      flex: 95%;
+      flex: 100%;
+      margin-right: 0px;
+      margin-bottom: 15px;
     }
   }
 }

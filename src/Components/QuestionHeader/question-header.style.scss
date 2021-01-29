@@ -1,6 +1,5 @@
 .question-header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 97%;
@@ -9,17 +8,17 @@
   border-radius: 5px;
 
   .category {
-    width: 33%;
+    flex: 33%;
     text-align: left;
   }
 
   .question-number {
-    width: 33%;
+    flex: 33%;
     text-align: center;
   }
 
   .difficulty {
-    width: 33%;
+    flex: 33%;
     text-align: right;
   }
 }

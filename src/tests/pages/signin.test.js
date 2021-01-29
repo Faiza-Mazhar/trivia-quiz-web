@@ -19,7 +19,7 @@ test("If user press New User label, the SignOut component is rendered", async ()
   ).toBeInTheDocument();
 });
 
-test("If user press - Already have an account- label, the SignOut component is rendered", async () => {
+test("If user press - Already have an account- label, the SignIn component is rendered", async () => {
   const { getByText } = render(<SignInAndSignUpPage />);
 
   await waitFor(() => getByText("New User?"));

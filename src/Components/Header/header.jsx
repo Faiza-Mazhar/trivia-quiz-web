@@ -2,17 +2,11 @@ import React from "react";
 import "./header.style.scss";
 import { Link } from "react-router-dom";
 import mainLogo from "../../assets/trivia-quiz.png";
-import { auth } from "../../firebase/firebase.utils";
+import { signOut } from "../../firebase/firebase.utils";
 
-const getFirstName = (userName) => {
-  if (!userName) {
-    return;
-  }
+const getFirstName = (userName) => userName.split(" ")[0].toUpperCase();
 
-  const firstName = userName.split(" ")[0];
-  return firstName && firstName.toUpperCase();
-};
-const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
+const HeaderComponent = ({ userName, setCurrentUser }) => {
   return (
     <header className="header">
       <Link to="/" className="logo">
@@ -20,8 +14,9 @@ const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
       </Link>
 
       <div className="title">
-        WELCOME {isUserSignedIn ? getFirstName(userName) : ""}
+        WELCOME {userName ? getFirstName(userName) : ""}
       </div>
+
       <div className="options-container">
         <Link className="option" to="/leaderboard">
           SCORE BOARD
@@ -31,8 +26,8 @@ const HeaderComponent = ({ userName, isUserSignedIn, setCurrentUser }) => {
           <div
             className="option"
             onClick={() => {
-              auth.signOut();
-              setCurrentUser({});
+              signOut();
+              setCurrentUser(undefined);
             }}
           >
             SIGN OUT

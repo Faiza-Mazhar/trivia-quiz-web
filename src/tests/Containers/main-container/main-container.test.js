@@ -73,7 +73,7 @@ const setup = async () => {
     );
 };
 
-test("On load, if question data is unavailable, the render the information label component", async () => {
+test("On load, if question data is unavailable, then render the `loading...` information label component", async () => {
   await setup();
   await act(async () => {
     const { getByText } = render(<MainContainer />);
@@ -83,7 +83,7 @@ test("On load, if question data is unavailable, the render the information label
   });
 });
 
-test("On load, if question data is available, the render the quiz display container", async () => {
+test("On load, if question data is available, then render the quiz display container", async () => {
   await setup();
 
   await act(async () => {

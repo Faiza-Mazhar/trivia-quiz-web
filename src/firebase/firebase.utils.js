@@ -12,6 +12,23 @@ const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({ prompt: "select_account" });
   auth.signInWithPopup(provider);
+
+  auth.onAuthStateChanged(async (userAuth) => {
+    if (!userAuth) {
+      return;
+    }
+    await createUserProfileDocument(userAuth);
+  });
+};
+
+const signOut = () => auth.signOut();
+
+const signInWithEmailAndPassword = async (email, password) =>
+  auth.signInWithEmailAndPassword(email, password);
+
+const signUpWithEmailAndPassword = async ({ email, password, displayName }) => {
+  const { user } = await auth.createUserWithEmailAndPassword(email, password);
+  await createUserProfileDocument({ ...user, displayName });
 };
 
 const getUserReferences = (id) => fireStore.doc(`/users/${id}`);
@@ -38,25 +55,30 @@ const createUserProfileDocument = async (userAuth) => {
   return userReference;
 };
 
-const getCurrentUser = async (userAuth, setCurrentUser) => {
-  const userReference = await createUserProfileDocument(userAuth);
-  userReference.onSnapshot((snapshot) => {
-    if (snapshot.exists) {
-      setCurrentUser({
-        id: snapshot.id,
-        ...snapshot.data(),
-      });
+const getCurrentUserName = async (setCurrentUser) => {
+  auth.onAuthStateChanged(async (userAuth) => {
+    if (!userAuth) {
+      setCurrentUser(undefined);
+      return;
     }
+    const userReference = getUserReferences(userAuth.uid);
+
+    userReference.onSnapshot((snapshot) => {
+      if (snapshot.exists) {
+        setCurrentUser(snapshot.data().displayName);
+      } else {
+        setCurrentUser(undefined);
+      }
+    });
   });
 };
 
 const setUserScore = async ({ category, score, totalQuestions }) => {
   const currentUser = firebase.auth().currentUser;
   if (!currentUser) return;
-
   let userId = currentUser.uid;
-
   const userReference = getUserReferences(userId);
+
   const data = {
     category: category,
     score: `${score}/${totalQuestions}`,
@@ -70,24 +92,27 @@ const setUserScore = async ({ category, score, totalQuestions }) => {
   }
 };
 
-const getUserScores = async (id) => {
-  if (!id) return;
-  const userReference = getUserReferences(id);
+const getUserScores = async () => {
+  const currentUser = firebase.auth().currentUser;
+  if (!currentUser) return;
+  let userId = currentUser.uid;
+  const userReference = getUserReferences(userId);
+
   const snapshot = await userReference.get();
 
   if (!snapshot.exists) {
-    console.log("No such document!");
+    console.log("Score does not exist");
   } else {
     return snapshot.data().scores;
   }
 };
 
 export {
-  auth,
-  fireStore,
-  signInWithGoogle,
-  createUserProfileDocument,
+  signOut,
   setUserScore,
   getUserScores,
-  getCurrentUser,
+  signInWithGoogle,
+  getCurrentUserName,
+  signUpWithEmailAndPassword,
+  signInWithEmailAndPassword,
 };

@@ -1,22 +1,15 @@
-.card {
+.radio-button-label {
   padding: 10px;
-  width: 90%;
-  height: 90%;
-  margin: 10px;
+
   display: flex;
   cursor: pointer;
   background-color: #e2eee2;
   color: #2a3121;
   font-weight: bold;
-  font-size: x-large;
-  padding: 10px 10px;
+  font-size: large;
   justify-content: space-between;
-
-  color: var(--primary);
-
-  box-shadow: none;
   border: 1px solid #e2eee2;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .radio {
@@ -28,7 +21,7 @@ input[type="radio"]:after {
   height: 15px;
   border-radius: 15px;
   top: -2px;
-  left: -1px;
+  left: -2px;
   position: relative;
   background-color: #d1d3d1;
   content: "";
@@ -42,7 +35,7 @@ input[type="radio"]:checked:after {
   height: 15px;
   border-radius: 15px;
   top: -2px;
-  left: -1px;
+  left: -2px;
   position: relative;
   background-color: #556342;
   content: "";

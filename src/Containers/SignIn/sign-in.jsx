@@ -2,7 +2,10 @@ import { useState } from "react";
 import CustomButton from "../../Components/CustomButton/custom-button";
 import FormInput from "../../Components/FormInput/form-input";
 import GoogleLogo from "../../assets/googleLogo.png";
-import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
+import {
+  signInWithEmailAndPassword,
+  signInWithGoogle,
+} from "../../firebase/firebase.utils";
 
 import "./sign-in.style.scss";
 
@@ -14,7 +17,7 @@ const SignIn = ({ setIsSignIn }) => {
     event.preventDefault();
 
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(email, password);
       setEmail("");
       setPassword("");
     } catch (error) {

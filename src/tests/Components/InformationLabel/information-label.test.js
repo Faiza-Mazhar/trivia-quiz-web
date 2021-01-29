@@ -1,7 +1,7 @@
 import InformationLabel from "../../../Components/InformationLabel/information-label";
 import renderer from "react-test-renderer";
 
-test("Information label is rendered is correct props", () => {
+test("Information label renders correct props", () => {
   const component = renderer.create(
     <InformationLabel information={"This is my information"} />
   );

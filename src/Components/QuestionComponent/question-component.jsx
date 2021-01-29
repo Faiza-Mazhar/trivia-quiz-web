@@ -16,18 +16,18 @@ const QuestionFormComponent = ({
   return (
     <div>
       <div className="question">{question}</div>
+
       <form onSubmit={handleSubmit}>
         {showSubmitButton && (
           <div>
             <div className="answers-container">
               {answers &&
                 answers.map((answer) => {
-                  const decodedAnswer = answer;
                   return (
-                    <div key={decodedAnswer} className="answer-container">
+                    <div key={answer} className="answer-container">
                       <RadioButton
-                        value={decodedAnswer}
-                        key={decodedAnswer}
+                        value={answer}
+                        key={answer}
                         inputProps={answerInputProps}
                       />
                     </div>
