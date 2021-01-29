@@ -10,7 +10,7 @@ const questionData = {
   type: "multiple",
 };
 
-test("Question component to show with submit button", () => {
+test("Question component shows the questions and submit button if showSubmitButton set as true", () => {
   const component = renderer.create(
     <QuestionFormComponent
       question={questionData.question}
@@ -20,8 +20,7 @@ test("Question component to show with submit button", () => {
       showSubmitButton={true}
     />
   );
-
-  let tree = component.toJSON();
+  const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
 
