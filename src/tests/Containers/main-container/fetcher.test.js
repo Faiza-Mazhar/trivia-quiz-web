@@ -78,6 +78,6 @@ test("fetchQuestions should return the question JSON array", async () => {
   };
 
   await fetchQuestions(quizQueryParams).then((response) => {
-    expect(response.length).toBeGreaterThan(0);
+    expect(response.length).toBe(5);
   });
 });
