@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Question component to show with submit button 1`] = `
+exports[`Question component shows the questions and submit button if showSubmitButton set as true 1`] = `
 <div>
   <div
     className="question"
