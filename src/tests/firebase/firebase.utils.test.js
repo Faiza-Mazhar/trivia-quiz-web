@@ -3,7 +3,7 @@ import "firebase/firebase-firestore";
 import "firebase/firebase-auth";
 import { getCurrentUser } from "../../firebase/firebase.utils";
 
-const userCredentialMock = {
+const mockUserCredential = {
   user: {},
 };
 
