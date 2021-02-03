@@ -101,12 +101,15 @@ test("on click play button in side bar, it should update the state in the parent
     await waitFor(() => getByText("PLAY"));
     fireEvent.click(getByText("PLAY"));
 
+    await waitFor(() => getByText("Question 1 Statement"));
+
+    expect(screen.getByText("Question 1 Statement")).toBeInTheDocument();
     rerender(
       <MainContainer>
-        <QuizDisplay quizQuestions={newQuestionResponse.questions} />
+        <QuizDisplay />
       </MainContainer>
     );
-    await waitFor(() => getByText("New Question Statement 1"));
+    await waitFor(() => getByText("SUBMIT"));
 
     expect(screen.getByText("New Question Statement 1")).toBeInTheDocument();
   });
